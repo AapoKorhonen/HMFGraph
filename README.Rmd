@@ -33,15 +33,18 @@ devtools::install_github("AapoKorhonen/HMFGraph")
 
 
 
-```{r}
+```{r, echo=TRUE,results="hide", fig.keep='all', warning=FALSE}
 library(HMFGraph)
 
+n <- 200
+p <- 100
+
 set.seed(42)
-generated_data <- data_generator(n=50, p = 100)
+generated_data <- data_generator(n=n, p = p)
 
-results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, alpha = 0.8, beta=0.9)
+results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, alpha = p*5/(p*5+n), beta=0.9)
 
-permutations <- HMFGraph_GEM_permutations(generated_data$data, results_HMFGraph_GEM)
+permutations <- HMFGraph_GEM_permutations(generated_data$data, results_HMFGraph_GEM, number_of_permutations = 100, parallel = F)
 
 results_FDR <- HMFGraph_GEM_FDR_control(results_HMFGraph_GEM, permutations, target_FDR = 0.2)
 
@@ -58,13 +61,16 @@ qgraph(results_FDR$adjacency_matrix)
 
 
 
-```{r}
+```{r, echo=TRUE,results="hide", fig.keep='all', warning=FALSE}
 library(HMFGraph)
 
-set.seed(42)
-generated_data <- data_generator(n=50, p = 100)
+n <- 200
+p <- 100
 
-results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, alpha =  0.8, beta=0.9)
+set.seed(42)
+generated_data <- data_generator(n=n, p = p)
+
+results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, alpha =  p*5/(p*5+n), beta=0.9)
 
 permutations <- HMFGraph_GEM_permutations(generated_data$data, results_HMFGraph_GEM, number_of_permutations = 100, parallel = F)
 
@@ -81,13 +87,16 @@ qgraph(results_optimal_CI$adjacency_matrix)
 
 
 
-```{r}
+```{r, echo=TRUE,results="hide", fig.keep='all', warning=FALSE}
 library(HMFGraph)
 
-set.seed(42)
-generated_data <- data_generator(n=50, p = 100)
+n <- 200
+p <- 100
 
-results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, alpha = 0.8, beta=0.9)
+set.seed(42)
+generated_data <- data_generator(n=n, p = p)
+
+results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, alpha = p*5/(p*5+n), beta=0.9)
 
 results_CI <- HMFGraph_GEM_CI(results_HMFGraph_GEM, CI = 0.8)
 
@@ -103,13 +112,16 @@ qgraph(results_CI$adjacency_matrix)
 
 
 
-```{r}
+```{r, echo=TRUE,results="hide", fig.keep='all', warning=FALSE}
 library(HMFGraph)
 
-set.seed(42)
-generated_data <- data_generator(n=50, p = 100)
+n <- 200
+p <- 100
 
-results_HMFGraph_gibbs <- HMFGraph_gibbs_sampler(generated_data$data, alpha = 0.8, beta=0.9, iters = 5000, burn_in = 1000)
+set.seed(42)
+generated_data <- data_generator(n=n, p = p)
+
+results_HMFGraph_gibbs <- HMFGraph_gibbs_sampler(generated_data$data, alpha = p*5/(p*5+n), beta=0.9, iters = 5000, burn_in = 1000)
 
 results_gibbs_CI <- HMFGraph_gibbs_CI(results_HMFGraph_gibbs, CI = 0.8)
 
