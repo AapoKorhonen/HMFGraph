@@ -3,8 +3,8 @@ Type: Package
 Title: Hierarchical Matrix-F prior for Graphical Models
 Version: 1.0
 Date: 2024-11-14
-Author: Aapo E Korhonen
-Maintainer: Aapo E Korhonen <aapo.korhonen@oulu.fi>
+Author: Aapo Korhonen
+Maintainer: Aapo Korhonen <aapo.korhonen@oulu.fi>
 Description: Implements Bayesian Gaussian Graphical Model using hierarchical matrix-F prior with a generalized expectation-maximization algorithm (GEM) and a gibbs sampler. Edge selecetion is done by using credibility intervals.
 License: GPL (>= 3)
 Encoding: UTF-8
