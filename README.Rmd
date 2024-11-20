@@ -13,16 +13,16 @@ knitr::opts_chunk$set(
 )
 ```
 
-# HMFGraph
+# Hierarchical Matrix-F prior for Graphical Models, or HMFGraph
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of HMFGraph is to ...
+HMFGraph implements Bayesian Bayesian Gaussian Graphical Model using hierarchical matrix-F prior. A generalized expectation-maximization algorithm (GEM) and a gibbs sampler are included.
 
 ## Installation
 
-You can install the development version of HMFGraph from [GitHub](https://github.com/) with:
+You can install the package using the following commands:
 
 ``` r
 # install.packages("devtools")
@@ -31,25 +31,90 @@ devtools::install_github("AapoKorhonen/HMFGraph")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
 
-```{r example}
+
+```{r}
 library(HMFGraph)
-## basic example code
+
+set.seed(42)
+generated_data <- data_generator(n=50, p = 100)
+
+results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, alpha = 0.8, beta=0.9)
+
+permutations <- HMFGraph_GEM_permutations(generated_data$data, results_HMFGraph_GEM)
+
+results_FDR <- HMFGraph_GEM_FDR_control(results_HMFGraph_GEM, permutations, target_FDR = 0.2)
+
+library(qgraph)
+
+qgraph(results_FDR$adjacency_matrix)
+
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
 
-```{r cars}
-summary(cars)
+
+
+## Example
+
+
+
+```{r}
+library(HMFGraph)
+
+set.seed(42)
+generated_data <- data_generator(n=50, p = 100)
+
+results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, alpha =  0.8, beta=0.9)
+
+permutations <- HMFGraph_GEM_permutations(generated_data$data, results_HMFGraph_GEM, number_of_permutations = 100, parallel = F)
+
+results_optimal_CI <- HMFGraph_GEM_optimal_CI(results_HMFGraph_GEM, permutations, expected_connections = 100)
+
+library(qgraph)
+
+qgraph(results_optimal_CI$adjacency_matrix)
+
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
 
-You can also embed plots, for example:
+## Example
 
-```{r pressure, echo = FALSE}
-plot(pressure)
+
+
+```{r}
+library(HMFGraph)
+
+set.seed(42)
+generated_data <- data_generator(n=50, p = 100)
+
+results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, alpha = 0.8, beta=0.9)
+
+results_CI <- HMFGraph_GEM_CI(results_HMFGraph_GEM, CI = 0.8)
+
+library(qgraph)
+
+qgraph(results_CI$adjacency_matrix)
+
 ```
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
+
+
+## Example
+
+
+
+```{r}
+library(HMFGraph)
+
+set.seed(42)
+generated_data <- data_generator(n=50, p = 100)
+
+results_HMFGraph_gibbs <- HMFGraph_gibbs_sampler(generated_data$data, alpha = 0.8, beta=0.9, iters = 5000, burn_in = 1000)
+
+results_gibbs_CI <- HMFGraph_gibbs_CI(results_HMFGraph_gibbs, CI = 0.8)
+
+library(qgraph)
+
+qgraph(results_gibbs_CI$adjacency_matrix)
+
+```
