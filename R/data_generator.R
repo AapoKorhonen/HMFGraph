@@ -79,7 +79,7 @@ data_generator <- function(n, p, d=0){
   
   adjacency_matrix <- omega_old
   
-  adjacency_matrix[abs(omega_old) >= 0] <- 1
+  adjacency_matrix[abs(omega_old) > 0] <- 1
   
   diag(adjacency_matrix) <- 0
   
