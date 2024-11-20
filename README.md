@@ -6,9 +6,9 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-HMFGraph implements Bayesian Bayesian Gaussian Graphical Model using
-hierarchical matrix-F prior. A generalized expectation-maximization
-algorithm (GEM) and a gibbs sampler are included.
+HMFGraph implements Bayesian Gaussian Graphical Model using hierarchical
+matrix-F prior. A generalized expectation-maximization algorithm (GEM)
+and a Gibbs sampler are included.
 
 ## Installation
 
@@ -19,7 +19,7 @@ You can install the package using the following commands:
 devtools::install_github("AapoKorhonen/HMFGraph")
 ```
 
-## Example
+## Example using FDR-control for edge selection
 
 ``` r
 library(HMFGraph)
@@ -43,7 +43,7 @@ qgraph(results_FDR$adjacency_matrix)
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
-## Example
+## Example using optimal CI for edge selection
 
 ``` r
 library(HMFGraph)
@@ -67,7 +67,7 @@ qgraph(results_optimal_CI$adjacency_matrix)
 
 <img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
 
-## Example
+## Example using CI for edge selection
 
 ``` r
 library(HMFGraph)
@@ -89,7 +89,7 @@ qgraph(results_CI$adjacency_matrix)
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
-## Example
+## Example using Gibbs sampler with CI for edge selection
 
 ``` r
 library(HMFGraph)
