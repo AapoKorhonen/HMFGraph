@@ -35,8 +35,8 @@ HMFGraph_GEM_optimal_CI <- function(HMFGraph_GEM_RESULTS, permutations, expected
   F1[is.nan(F1)] <- 0
   F1[is.na(F1)] <- 0
   
-  MCC[is.nan(MCC)] <- 0
-  MCC[is.na(MCC)] <- 0
+  # MCC[is.nan(MCC)] <- 0
+  # MCC[is.na(MCC)] <- 0
   
   quantile_point <- permutations$quantile_points[F1==max(F1[!is.nan(F1)])][1]
   print(quantile_point)
