@@ -1,4 +1,4 @@
-#' Title
+#' GEM-algorithm for solving MAP-estimate for Bayesian GGM using hierarchical matrix-f prior
 #'
 #' @param data The data matrix. Variables on columns and samples on rows. n x p
 #' @param p The number of variables. The value will be derived from the data matrix dimensions if not specified.
