@@ -2,7 +2,7 @@
 % Please edit documentation in R/HMFGraph_GEM.R
 \name{HMFGraph_GEM}
 \alias{HMFGraph_GEM}
-\title{Title}
+\title{GEM-algorithm for solving MAP-estimate for Bayesian GGM using hierarchical matrix-f prior}
 \usage{
 HMFGraph_GEM(
   data,
@@ -51,5 +51,5 @@ HMFGraph_GEM(
 Returns the map estimate for precision matrix. Also returns all values that are used for the algorithm.
 }
 \description{
-Title
+GEM-algorithm for solving MAP-estimate for Bayesian GGM using hierarchical matrix-f prior
 }
