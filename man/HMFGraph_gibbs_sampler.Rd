@@ -50,3 +50,11 @@ Posterior samples of Omega. Also returns nu, delta, alpha and beta values, and t
 \description{
 Gibbs sampler for Hierarchical matrix F using Rcpp
 }
+\examples{
+library(HMFGraph)
+n <- 200
+p <- 100
+set.seed(42)
+generated_data <- data_generator(n=n, p = p)
+results_HMFGraph_gibbs <- HMFGraph_gibbs_sampler(generated_data$data, alpha = p*5/(p*5+n), beta=0.9, iters = 5000, burn_in = 1000)
+}

@@ -2,17 +2,20 @@
 % Please edit documentation in R/parameter_change.R
 \name{nu_to_alpha}
 \alias{nu_to_alpha}
-\title{Title}
+\title{Changes nu parameter value to alpha}
 \usage{
 nu_to_alpha(p, n, nu)
 }
 \arguments{
-\item{p}{}
+\item{p}{The number of variables}
 
-\item{n}{}
+\item{n}{The number of samples}
 
-\item{nu}{}
+\item{nu}{Value for nu parameter}
+}
+\value{
+returns alpha
 }
 \description{
-Title
+Changes nu parameter value to alpha
 }

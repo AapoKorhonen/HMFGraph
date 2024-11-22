@@ -7,8 +7,11 @@
 #' @return Returns the generated data with precision, covariance and adjacency matrices.
 #' @export
 #'
-#' @examples
-#' 
+#' @examples library(HMFGraph)
+#' @examples n <- 200
+#' @examples p <- 100
+#' @examples set.seed(42)
+#' @examples generated_data <- data_generator(n=n, p = p, d=p)
 data_generator <- function(n, p, d=0){
 
   

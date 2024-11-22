@@ -2,21 +2,24 @@
 % Please edit documentation in R/parameter_change.R
 \name{logmarginal}
 \alias{logmarginal}
-\title{Title}
+\title{Calculates the log-marginal likelihood}
 \usage{
 logmarginal(x, n, p, eigen_D, eigen_inv_DS)
 }
 \arguments{
-\item{x}{}
+\item{x}{Values for the parameter nu}
 
-\item{n}{}
+\item{n}{The number of samples}
 
-\item{p}{}
+\item{p}{The number of variables}
 
-\item{eigen_D}{}
+\item{eigen_D}{Eigenvalues of matrix D}
 
-\item{eigen_inv_DS}{}
+\item{eigen_inv_DS}{Eiganvalues of inverse of matrix product of S and D}
+}
+\value{
+Returns the value of the log-marginal likelihood
 }
 \description{
-Title
+Calculates the log-marginal likelihood
 }

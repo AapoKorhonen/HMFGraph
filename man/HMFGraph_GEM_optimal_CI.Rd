@@ -23,3 +23,15 @@ Returns the adjacency matrix, the map estimate, the variance matrix, lower and u
 \description{
 Selects the edges for the graph based on an optimal credible interval.
 }
+\examples{
+library(HMFGraph)
+n <- 200
+p <- 100
+set.seed(42)
+generated_data <- data_generator(n=n, p = p)
+results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, alpha = p * 5 / ( p * 5+n), beta=0.9)
+permutations <- HMFGraph_GEM_permutations(generated_data$data, results_HMFGraph_GEM, number_of_permutations = 100, parallel = F)
+results_optimal_CI <- HMFGraph_GEM_optimal_CI(results_HMFGraph_GEM, permutations, expected_connections = p)
+library(qgraph)
+qgraph(results_optimal_CI$adjacency_matrix)
+}

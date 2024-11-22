@@ -2,19 +2,22 @@
 % Please edit documentation in R/parameter_change.R
 \name{beta_to_delta}
 \alias{beta_to_delta}
-\title{Title}
+\title{Changes beta parameter value to delta}
 \usage{
 beta_to_delta(p, n, nu, beta)
 }
 \arguments{
-\item{p}{}
+\item{p}{The number of variables}
 
-\item{n}{}
+\item{n}{The number of samples}
 
-\item{nu}{}
+\item{nu}{Value for nu parameter}
 
-\item{beta}{}
+\item{beta}{Value for beta parameter}
+}
+\value{
+returns delta
 }
 \description{
-Title
+Changes beta parameter value to delta
 }

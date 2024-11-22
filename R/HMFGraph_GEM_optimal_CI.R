@@ -8,7 +8,16 @@
 #' @return  Returns the adjacency matrix, the map estimate, the variance matrix, lower and upper credible interval point matrices.
 #' @export
 #'
-#' @examples
+#' @examples library(HMFGraph)
+#' @examples n <- 200
+#' @examples p <- 100
+#' @examples set.seed(42)
+#' @examples generated_data <- data_generator(n=n, p = p)
+#' @examples results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, alpha = p * 5 / ( p * 5+n), beta=0.9)
+#' @examples permutations <- HMFGraph_GEM_permutations(generated_data$data, results_HMFGraph_GEM, number_of_permutations = 100, parallel = F)
+#' @examples results_optimal_CI <- HMFGraph_GEM_optimal_CI(results_HMFGraph_GEM, permutations, expected_connections = p)
+#' @examples library(qgraph)
+#' @examples qgraph(results_optimal_CI$adjacency_matrix)
 HMFGraph_GEM_optimal_CI <- function(HMFGraph_GEM_RESULTS, permutations, expected_connections= NULL){
   
   #param MCC # If TRUE, then  the optimal credible interval will be determined by an approximative MCC. Other wise an approximative F1 -value.

@@ -19,3 +19,10 @@ Returns the generated data with precision, covariance and adjacency matrices.
 \description{
 Generates data with a scale free network structure.
 }
+\examples{
+library(HMFGraph)
+n <- 200
+p <- 100
+set.seed(42)
+generated_data <- data_generator(n=n, p = p, d=p)
+}

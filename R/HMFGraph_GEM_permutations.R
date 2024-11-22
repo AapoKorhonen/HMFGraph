@@ -11,7 +11,13 @@
 #' @return Returns two vectors and vector on quantile points. The first vector consists the number of estimated connections for each quantile point with the original data and the second consist median number of connections for permutated data.
 #' @export
 #'
-#' @examples
+#' @examples library(HMFGraph)
+#' @examples n <- 200
+#' @examples p <- 100
+#' @examples set.seed(42)
+#' @examples generated_data <- data_generator(n=n, p = p)
+#' @examples results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, alpha = p * 5 / ( p * 5+n), beta=0.9)
+#' @examples permutations <- HMFGraph_GEM_permutations(generated_data$data, results_HMFGraph_GEM, number_of_permutations = 100, parallel = F)
 HMFGraph_GEM_permutations <- function(data, HMFGraph_GEM_RESULTS, number_of_permutations = 50, parallel = FALSE, seed = FALSE, n_cores = 0){
   
   

@@ -6,7 +6,15 @@
 #' @return  Returns the adjacency matrix, the map estimate, the variance matrix, lower and upper credible interval point matrices.
 #' @export
 #'
-#' @examples
+#' @examples library(HMFGraph)
+#' @examples n <- 200
+#' @examples p <- 100
+#' @examples set.seed(42)
+#' @examples generated_data <- data_generator(n=n, p = p)
+#' @examples results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, alpha = p * 5 / ( p * 5+n), beta=0.9)
+#' @examples results_CI <- HMFGraph_GEM_CI(results_HMFGraph_GEM, CI = 0.8)
+#' @examples library(qgraph)
+#' @examples qgraph(results_CI$adjacency_matrix)
 HMFGraph_GEM_CI <- function(HMFGraph_GEM_RESULTS, CI=0.9){
   
   a = (1-CI)/2

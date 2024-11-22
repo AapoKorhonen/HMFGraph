@@ -17,7 +17,11 @@
 #' @return Returns the map estimate for precision matrix. Also returns all values that are used for the algorithm.
 #' @export
 #'
-#' @examples
+#' @examples library(HMFGraph)
+#' @examples n <- 200
+#' @examples p <- 100
+#' @examples set.seed(42)
+#' @examples generated_data <- data_generator(n=n, p = p)
 HMFGraph_GEM <- function(data, p = 0,  n = 0, 
                     alpha = -1,  beta = 0.9, max_iters = 5000,
                     stop_criterion = 10^(-6)  ,epsilon1 = 0, epsilon2 = 0,

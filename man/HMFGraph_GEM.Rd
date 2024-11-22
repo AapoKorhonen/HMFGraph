@@ -53,3 +53,10 @@ Returns the map estimate for precision matrix. Also returns all values that are 
 \description{
 GEM-algorithm for solving MAP-estimate for Bayesian GGM using hierarchical matrix-f prior
 }
+\examples{
+library(HMFGraph)
+n <- 200
+p <- 100
+set.seed(42)
+generated_data <- data_generator(n=n, p = p)
+}

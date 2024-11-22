@@ -17,7 +17,12 @@
 #' @return Posterior samples of Omega. Also returns nu, delta, alpha and beta values, and the last samples of B and Phi matrices.
 #' @export
 #'
-#' @examples
+#' @examples library(HMFGraph)
+#' @examples n <- 200
+#' @examples p <- 100
+#' @examples set.seed(42)
+#' @examples generated_data <- data_generator(n=n, p = p)
+#' @examples results_HMFGraph_gibbs <- HMFGraph_gibbs_sampler(generated_data$data, alpha = p*5/(p*5+n), beta=0.9, iters = 5000, burn_in = 1000)
 HMFGraph_gibbs_sampler <- function(data, p = 0,  n = 0, 
                               alpha = -1,  beta = 0.9, iters = 5000, burn_in = 1000, epsilon1 = 0, epsilon2 = 0, B = 0,fixed_B = F, print_t=T){
   

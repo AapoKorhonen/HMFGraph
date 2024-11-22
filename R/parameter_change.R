@@ -1,14 +1,12 @@
 
 
-#' Title
+#' Changes alpha parameter value to nu
 #'
-#' @param p 
-#' @param n 
-#' @param alpha 
+#' @param p The number of variables
+#' @param n  The number of samples
+#' @param alpha Value for alpha parameter
 #'
-#' @return
-#'
-#' @examples
+#' @return returns nu
 alpha_to_nu  <- function(p,n, alpha){
   
   nu <- (alpha*n-alpha*p-alpha+p+1)/(1-alpha)
@@ -18,15 +16,13 @@ alpha_to_nu  <- function(p,n, alpha){
 } 
 
 
-#' Title
+#' Changes nu parameter value to alpha
 #'
-#' @param p 
-#' @param n 
-#' @param nu 
+#' @param p The number of variables
+#' @param n  The number of samples 
+#' @param nu Value for nu parameter
 #'
-#' @return
-#'
-#' @examples
+#' @return returns alpha
 nu_to_alpha  <- function(p,n, nu){
   
   alpha <- (nu-p-1)/(nu+n-p-1)
@@ -36,16 +32,14 @@ nu_to_alpha  <- function(p,n, nu){
 } 
 
 
-#' Title
+#' Changes beta parameter value to delta
 #'
-#' @param p 
-#' @param n 
-#' @param nu 
-#' @param beta 
+#' @param p The number of variables
+#' @param n The number of samples 
+#' @param nu Value for nu parameter
+#' @param beta Value for beta parameter
 #'
-#' @return
-#'
-#' @examples
+#' @return returns delta
 beta_to_delta  <- function(p,n, nu,beta){
   
   delta <- (beta*nu-p+1-2*beta)/(1-beta)
@@ -54,16 +48,14 @@ beta_to_delta  <- function(p,n, nu,beta){
 }
 
 
-#' Title
+#' Changes delta  parameter value to beta
 #'
-#' @param p 
-#' @param n 
-#' @param nu 
-#' @param delta 
+#' @param p The number of variables
+#' @param n The number of samples 
+#' @param nu Value for nu parameter
+#' @param delta Value for delta parameter
 #'
-#' @return
-#'
-#' @examples
+#' @return returns beta
 delta_to_beta  <- function(p,n, nu,delta){
   
   beta <- (delta+p-1)/(delta+nu-2)
@@ -94,17 +86,15 @@ delta_to_beta  <- function(p,n, nu,delta){
 # }
 
 
-#' Title
+#' Calculates the log-marginal likelihood 
 #'
-#' @param x 
-#' @param n 
-#' @param p 
-#' @param eigen_D 
-#' @param eigen_inv_DS 
+#' @param x Values for the parameter nu
+#' @param n The number of samples 
+#' @param p The number of variables
+#' @param eigen_D Eigenvalues of matrix D
+#' @param eigen_inv_DS Eiganvalues of inverse of matrix product of S and D
 #'
-#' @return
-#'
-#' @examples
+#' @return Returns the value of the log-marginal likelihood
 logmarginal <- function(x,n,p,eigen_D,eigen_inv_DS){
   
   logdetD <- (sum(log(eigen_D)))

@@ -17,3 +17,14 @@ Returns an adjacency matrix, the posterior mean and median, and lower and upper 
 \description{
 Edge selection based on credible intervals
 }
+\examples{
+library(HMFGraph)
+n <- 200
+p <- 100
+set.seed(42)
+generated_data <- data_generator(n=n, p = p)
+results_HMFGraph_gibbs <- HMFGraph_gibbs_sampler(generated_data$data, alpha = p*5/(p*5+n), beta=0.9, iters = 5000, burn_in = 1000)
+results_gibbs_CI <- HMFGraph_gibbs_CI(results_HMFGraph_gibbs, CI = 0.8)
+library(qgraph)
+qgraph(results_gibbs_CI$adjacency_matrix)
+}

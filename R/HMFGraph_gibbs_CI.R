@@ -6,9 +6,15 @@
 #' @return Returns an adjacency matrix, the posterior mean and median, and lower and upper credible interval points
 #' @export
 #'
-#' @examples 
-#' 
-
+#' @examples library(HMFGraph)
+#' @examples n <- 200
+#' @examples p <- 100
+#' @examples set.seed(42)
+#' @examples generated_data <- data_generator(n=n, p = p)
+#' @examples results_HMFGraph_gibbs <- HMFGraph_gibbs_sampler(generated_data$data, alpha = p*5/(p*5+n), beta=0.9, iters = 5000, burn_in = 1000)
+#' @examples results_gibbs_CI <- HMFGraph_gibbs_CI(results_HMFGraph_gibbs, CI = 0.8)
+#' @examples library(qgraph)
+#' @examples qgraph(results_gibbs_CI$adjacency_matrix)
 HMFGraph_gibbs_CI <- function(posterior_samples, CI=0.9){
   
   a = (1-CI)/2

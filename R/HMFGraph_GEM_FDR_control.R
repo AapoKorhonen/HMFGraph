@@ -9,18 +9,13 @@
 #' @export
 #'
 #' @examples library(HMFGraph)
-#' @examples 
 #' @examples n <- 200
 #' @examples p <- 100
-#' @examples
 #' @examples set.seed(42)
 #' @examples generated_data <- data_generator(n=n, p = p)
 #' @examples results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, alpha = p * 5 / ( p * 5+n), beta=0.9)
-#' @examples
 #' @examples permutations <- HMFGraph_GEM_permutations(generated_data$data, results_HMFGraph_GEM, number_of_permutations = 100, parallel = F)
-#' @examples
-#' @examples results_FDR <- HMFGraph_GEM_FDR_control(results_HMFGraph_GEM, permutations, target_FDR = 0.2) library(qgraph)
-#' @examples
+#' @examples results_FDR <- HMFGraph_GEM_FDR_control(results_HMFGraph_GEM, permutations, target_FDR = 0.2)
 #' @examples library(qgraph)
 #' @examples qgraph(results_FDR$adjacency_matrix)
 
