@@ -59,4 +59,5 @@ n <- 200
 p <- 100
 set.seed(42)
 generated_data <- data_generator(n=n, p = p)
+results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, alpha = p * 5 / ( p * 5+n), beta=0.9)
 }
