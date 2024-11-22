@@ -1,9 +1,9 @@
-#' Edge selection for GEM-MAP estimate based on a credibility interval.
+#' Edge selection for GEM-MAP estimate based on a credible interval.
 #'
 #' @param HMFGraph_GEM_RESULTS  Results from the function HMFGraph_GEM
-#' @param CI  Credibility interval. The default value is 0.9, or 90% credibility interval 
+#' @param CI  Credible interval. The default value is 0.9, or 90% credible interval 
 #'
-#' @return  Returns the adjacency matrix, the map estimate, the variance matrix, lower and upper credibility interval point matrices.
+#' @return  Returns the adjacency matrix, the map estimate, the variance matrix, lower and upper credible interval point matrices.
 #' @export
 #'
 #' @examples

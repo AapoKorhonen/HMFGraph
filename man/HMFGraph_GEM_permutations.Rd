@@ -22,12 +22,12 @@ HMFGraph_GEM_permutations(
 
 \item{parallel}{If TRUE, then parallel computing is used.}
 
-\item{seed}{A seed for permutaion function.}
+\item{seed}{A seed for permutation function.}
 
 \item{n_cores}{The number of cores for the permutation calculations}
 }
 \value{
-Returns two vectors and vector on quantile points. The first vector consists the number of estimated connections for each quantile point wiht the original data and the second consist median number of connections for permutated datas.
+Returns two vectors and vector on quantile points. The first vector consists the number of estimated connections for each quantile point with the original data and the second consist median number of connections for permutated data.
 }
 \description{
 HMFGraph GEM algorithm with permutated data.

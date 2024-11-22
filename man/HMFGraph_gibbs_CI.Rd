@@ -2,18 +2,18 @@
 % Please edit documentation in R/HMFGraph_gibbs_CI.R
 \name{HMFGraph_gibbs_CI}
 \alias{HMFGraph_gibbs_CI}
-\title{Edge selection based on credibility intervals}
+\title{Edge selection based on credible intervals}
 \usage{
 HMFGraph_gibbs_CI(posterior_samples, CI = 0.9)
 }
 \arguments{
 \item{posterior_samples}{Posterior samples from the HMFGraph_gibbs_sampler -function}
 
-\item{CI}{The credibility interval to be used for selection edges. On defaut the value is 0.9, or 90 % credibility interval}
+\item{CI}{The credible interval to be used for selection edges. On defaut the value is 0.9, or 90 % credible interval}
 }
 \value{
-Returns an adjacency matrix, the posterior mean and median, and lower and upper credibitiry interval points
+Returns an adjacency matrix, the posterior mean and median, and lower and upper credible interval points
 }
 \description{
-Edge selection based on credibility intervals
+Edge selection based on credible intervals
 }

@@ -5,10 +5,10 @@
 #' @param HMFGraph_GEM_RESULTS Results from the function HMFGraph_GEM
 #' @param number_of_permutations The number of permutations to be run
 #' @param parallel If TRUE, then parallel computing is used.
-#' @param seed A seed for permutaion function.
+#' @param seed A seed for permutation function.
 #' @param n_cores The number of cores for the permutation calculations
 #'
-#' @return Returns two vectors and vector on quantile points. The first vector consists the number of estimated connections for each quantile point wiht the original data and the second consist median number of connections for permutated datas.
+#' @return Returns two vectors and vector on quantile points. The first vector consists the number of estimated connections for each quantile point with the original data and the second consist median number of connections for permutated data.
 #' @export
 #'
 #' @examples

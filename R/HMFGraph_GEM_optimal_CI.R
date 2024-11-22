@@ -1,17 +1,17 @@
 
-#' Selects the edges for the graph based on an optimal credibility interval.
+#' Selects the edges for the graph based on an optimal credible interval.
 #'
 #' @param HMFGraph_GEM_RESULTS  Results from the function HMFGraph_GEM
 #' @param permutations   Results from the function HMFGraph_GEM_permutation
 #' @param expected_connections  An expected number of connections in the real network. The default value is p, or the number of variables.
 #'
-#' @return  Returns the adjacency matrix, the map estimate, the variance matrix, lower and upper credibility interval point matrices.
+#' @return  Returns the adjacency matrix, the map estimate, the variance matrix, lower and upper credible interval point matrices.
 #' @export
 #'
 #' @examples
 HMFGraph_GEM_optimal_CI <- function(HMFGraph_GEM_RESULTS, permutations, expected_connections= NULL){
   
-  #param MCC # If TRUE, then  the optimal credibility interval will be determined by an approximative MCC. Other wise an approximative F1 -value.
+  #param MCC # If TRUE, then  the optimal credible interval will be determined by an approximative MCC. Other wise an approximative F1 -value.
   
   if(is.null( expected_connections )){
     expected_connections <- HMFGraph_GEM_RESULTS$p

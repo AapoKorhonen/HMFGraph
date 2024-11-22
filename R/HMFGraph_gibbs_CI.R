@@ -1,9 +1,9 @@
-#' Edge selection based on credibility intervals
+#' Edge selection based on credible intervals
 #'
 #' @param posterior_samples Posterior samples from the HMFGraph_gibbs_sampler -function
-#' @param CI The credibility interval to be used for selection edges. On defaut the value is 0.9, or 90 % credibility interval
+#' @param CI The credible interval to be used for selection edges. On defaut the value is 0.9, or 90 % credible interval
 #'
-#' @return Returns an adjacency matrix, the posterior mean and median, and lower and upper credibitiry interval points
+#' @return Returns an adjacency matrix, the posterior mean and median, and lower and upper credible interval points
 #' @export
 #'
 #' @examples 

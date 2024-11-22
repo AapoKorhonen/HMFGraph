@@ -2,7 +2,7 @@
 % Please edit documentation in R/HMFGraph_GEM_optimal_CI.R
 \name{HMFGraph_GEM_optimal_CI}
 \alias{HMFGraph_GEM_optimal_CI}
-\title{Selects the edges for the graph based on an optimal credibility interval.}
+\title{Selects the edges for the graph based on an optimal credible interval.}
 \usage{
 HMFGraph_GEM_optimal_CI(
   HMFGraph_GEM_RESULTS,
@@ -18,8 +18,8 @@ HMFGraph_GEM_optimal_CI(
 \item{expected_connections}{An expected number of connections in the real network. The default value is p, or the number of variables.}
 }
 \value{
-Returns the adjacency matrix, the map estimate, the variance matrix, lower and upper credibility interval point matrices.
+Returns the adjacency matrix, the map estimate, the variance matrix, lower and upper credible interval point matrices.
 }
 \description{
-Selects the edges for the graph based on an optimal credibility interval.
+Selects the edges for the graph based on an optimal credible interval.
 }

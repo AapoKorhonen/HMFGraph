@@ -2,18 +2,18 @@
 % Please edit documentation in R/HMFGraph_GEM_CI.R
 \name{HMFGraph_GEM_CI}
 \alias{HMFGraph_GEM_CI}
-\title{Edge selection for GEM-MAP estimate based on a credibility interval.}
+\title{Edge selection for GEM-MAP estimate based on a credible interval.}
 \usage{
 HMFGraph_GEM_CI(HMFGraph_GEM_RESULTS, CI = 0.9)
 }
 \arguments{
 \item{HMFGraph_GEM_RESULTS}{Results from the function HMFGraph_GEM}
 
-\item{CI}{Credibility interval. The default value is 0.9, or 90% credibility interval}
+\item{CI}{Credible interval. The default value is 0.9, or 90% credible interval}
 }
 \value{
-Returns the adjacency matrix, the map estimate, the variance matrix, lower and upper credibility interval point matrices.
+Returns the adjacency matrix, the map estimate, the variance matrix, lower and upper credible interval point matrices.
 }
 \description{
-Edge selection for GEM-MAP estimate based on a credibility interval.
+Edge selection for GEM-MAP estimate based on a credible interval.
 }
