@@ -38,6 +38,14 @@ HMFGraph_gibbs_CI <- function(posterior_samples, CI=0.9){
   
   adjacency_matrix[multiplication > 0] <- 1
   
+  diag(adjacency_matrix) <- 0
+  
+  adjacency_matrix[is.na(adjacency_matrix)] <- 0
+  
+  adjacency_matrix[is.nan(adjacency_matrix)] <- 0
+  
+  adjacency_matrix[is.null(adjacency_matrix)] <- 0
+  
   
   return(list(adjacency_matrix = adjacency_matrix, median=  gibbs_median  , mean=  gibbs_mean, lower_CI = lower_CI, upper_CI = upper_CI) ) 
   

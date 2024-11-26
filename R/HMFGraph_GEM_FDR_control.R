@@ -50,6 +50,13 @@ HMFGraph_GEM_FDR_control <- function(HMFGraph_GEM_RESULTS,permutation , target_F
   
   diag(adjacency_matrix) <- 0
   
+  adjacency_matrix[is.na(adjacency_matrix)] <- 0
+  
+  adjacency_matrix[is.nan(adjacency_matrix)] <- 0
+  
+  adjacency_matrix[is.null(adjacency_matrix)] <- 0
+  
+  
   return(list(adjacency_matrix = adjacency_matrix, MAP_estimate =  MAP_estimate,
               variance_matrix =  variance_matrix, lower_CI = lower_CI,
               upper_CI = upper_CI) ) 
