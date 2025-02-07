@@ -67,23 +67,23 @@ delta_to_beta  <- function(p,n, nu,delta){
 
 # 
 # 
-# logmarginal_determinant <- function(x,n,p,D,S){
-#   
-#   p6 <- (x/2)*determinant(D*(x-p-1),logarithm = T)$modulus[1]
-#   
-#   p5 <- ((x+n)/2)*determinant( D*(x-p-1) + S ,logarithm = T)$modulus[1]
-#   
-#   p1 <- ((n*p)/2)*log(pi)
-#   
-#   p2 <- (CholWishart::lmvgamma((x+n)/2, p)) 
-#   
-#   p3 <- (CholWishart::lmvgamma((x)/2, p))
-#   
-#   
-#   pp <- -p1 +p2 -p3 - p5 + p6 
-#   
-#   return(pp)
-# }
+logmarginal_determinant <- function(x,n,p,D,S){
+
+  p6 <- (x/2)*determinant(D*(x-p-1),logarithm = T)$modulus[1]
+
+  p5 <- ((x+n)/2)*determinant( D*(x-p-1) + n*S ,logarithm = T)$modulus[1]
+
+  p1 <- ((n*p)/2)*log(pi)
+
+  p2 <- (CholWishart::lmvgamma((x+n)/2, p))
+
+  p3 <- (CholWishart::lmvgamma((x)/2, p))
+
+
+  pp <- -p1 +p2 -p3 - p5 + p6
+
+  return(pp)
+}
 
 
 #' Calculates the log-marginal likelihood 
@@ -92,7 +92,7 @@ delta_to_beta  <- function(p,n, nu,delta){
 #' @param n The number of samples 
 #' @param p The number of variables
 #' @param eigen_D Eigenvalues of matrix D
-#' @param eigen_inv_DS Eiganvalues of inverse of matrix product of S and D
+#' @param eigen_inv_DS Eigenvalues of inverse of matrix product of S and D
 #'
 #' @return Returns the value of the log-marginal likelihood
 logmarginal <- function(x,n,p,eigen_D,eigen_inv_DS){

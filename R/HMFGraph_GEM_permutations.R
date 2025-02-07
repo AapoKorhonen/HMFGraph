@@ -7,6 +7,8 @@
 #' @param parallel If TRUE, then parallel computing is used.
 #' @param seed A seed for permutation function.
 #' @param n_cores The number of cores for the permutation calculations
+#' @param median_p The median of permutation is used, otherwise uses mean.
+#' @param omega_0 The initial value for Omega for the algorithm.
 #'
 #' @return Returns two vectors and vector on quantile points. The first vector consists the number of estimated connections for each quantile point with the original data and the second consist median number of connections for permutated data.
 #' @export
@@ -18,18 +20,19 @@
 #' @examples generated_data <- data_generator(n=n, p = p)
 #' @examples results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, alpha = p * 5 / ( p * 5+n), beta=0.9)
 #' @examples permutations <- HMFGraph_GEM_permutations(generated_data$data, results_HMFGraph_GEM, number_of_permutations = 100, parallel = F)
-HMFGraph_GEM_permutations <- function(data, HMFGraph_GEM_RESULTS, number_of_permutations = 50, parallel = FALSE, seed = FALSE, n_cores = 0){
+HMFGraph_GEM_permutations <- function(data, HMFGraph_GEM_RESULTS, number_of_permutations = 50, parallel = FALSE, seed = FALSE, n_cores = 0, median_p=T, omega_0 = NULL){
   
   
   
+  if(is.null(omega_0)){
+    omega_0 = diag(HMFGraph_GEM_RESULTS$p)
+  }
   
   quantile_points <- seq(0.00001,7, length.out=5000)
   
   if(seed==F){
-    seed <- sample(.Random.seed,1)
+      seed <- sample(.Random.seed,1)
   }
-  
-  
   
   if(parallel){
     
@@ -39,7 +42,7 @@ HMFGraph_GEM_permutations <- function(data, HMFGraph_GEM_RESULTS, number_of_perm
     
     n_clusters <- number_of_permutations
     
-    print("Starting permutations:")
+    cat("Starting permutations", "\n")
     
     cl <- parallel::makeCluster(min(n_cores, n_clusters) , type = "SOCK")
     
@@ -71,7 +74,7 @@ HMFGraph_GEM_permutations <- function(data, HMFGraph_GEM_RESULTS, number_of_perm
               epsilon1 = HMFGraph_GEM_RESULTS$epsilon1,
               epsilon2 = HMFGraph_GEM_RESULTS$epsilon2, B = HMFGraph_GEM_RESULTS$B, 
               fixed_B = HMFGraph_GEM_RESULTS$fixed_B, inter=HMFGraph_GEM_RESULTS$inter,
-              print_t=F )
+              print_t=F, omega_0 = omega_0 )
       
       
       
@@ -85,8 +88,14 @@ HMFGraph_GEM_permutations <- function(data, HMFGraph_GEM_RESULTS, number_of_perm
     #base::close(pb)
     parallel::stopCluster(cl)
     
-    qp_connections_permutation<-  apply(permutation_results,2,median)
-    
+    if(median_p){
+      qp_connections_permutation<-  apply(permutation_results,2,median)
+      
+    }
+    else{
+      qp_connections_permutation<-  apply(permutation_results,2,mean)
+      
+    }
     
     
   }
@@ -95,7 +104,7 @@ HMFGraph_GEM_permutations <- function(data, HMFGraph_GEM_RESULTS, number_of_perm
     pb <- progress::progress_bar$new(format = "Permutations :percent [:bar] :elapsed | eta: :eta",
                            total = number_of_permutations, width = 80)
     
-    print("Starting permutations:")
+    cat("Starting permutations", "\n")
     
     qp_connections_permutation <- matrix(0,nrow= number_of_permutations ,ncol=length(quantile_points))
     
@@ -112,18 +121,25 @@ HMFGraph_GEM_permutations <- function(data, HMFGraph_GEM_RESULTS, number_of_perm
               epsilon1 = HMFGraph_GEM_RESULTS$epsilon1,
               epsilon2 = HMFGraph_GEM_RESULTS$epsilon2, B = HMFGraph_GEM_RESULTS$B, 
               fixed_B = HMFGraph_GEM_RESULTS$fixed_B, inter=HMFGraph_GEM_RESULTS$inter,
-              print_t=F )
+              print_t=F, omega_0 = omega_0)
       
       qp_connections_permutation[i,] <- rajat_Cpp(HMFGraph_GEM_results_permutation$omega,sqrt(HMFGraph_GEM_results_permutation$varmat),HMFGraph_GEM_RESULTS$p,quantile_points)
       
       
     }
+    if(median_p){
+      qp_connections_permutation<-  apply(qp_connections_permutation,2,median)
+      
+    }
+    else{
+      qp_connections_permutation<-  apply(qp_connections_permutation,2,mean)
+      
+    }
     
-    qp_connections_permutation<-  apply(qp_connections_permutation,2,median)
   }
-    
   
   
+  cat("Permutations finished", "\n")
   
   qp_connections <- rajat_Cpp(HMFGraph_GEM_RESULTS$omega,sqrt(HMFGraph_GEM_RESULTS$varmat),HMFGraph_GEM_RESULTS$p,quantile_points)
   

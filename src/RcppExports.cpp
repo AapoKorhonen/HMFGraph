@@ -12,8 +12,8 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
 // HMFGraph_Gem_algorithm_cpp
-List HMFGraph_Gem_algorithm_cpp(int iters, arma::mat S, const arma::mat B, int p, int n, double stop_criterion, double delta, double nu, int inter, double epsilon1, double epsilon2, bool fixed_B, bool print_t);
-RcppExport SEXP _HMFGraph_HMFGraph_Gem_algorithm_cpp(SEXP itersSEXP, SEXP SSEXP, SEXP BSEXP, SEXP pSEXP, SEXP nSEXP, SEXP stop_criterionSEXP, SEXP deltaSEXP, SEXP nuSEXP, SEXP interSEXP, SEXP epsilon1SEXP, SEXP epsilon2SEXP, SEXP fixed_BSEXP, SEXP print_tSEXP) {
+List HMFGraph_Gem_algorithm_cpp(int iters, arma::mat S, const arma::mat B, int p, int n, double stop_criterion, double delta, double nu, int inter, double epsilon1, double epsilon2, bool fixed_B, bool print_t, arma::mat omega_0);
+RcppExport SEXP _HMFGraph_HMFGraph_Gem_algorithm_cpp(SEXP itersSEXP, SEXP SSEXP, SEXP BSEXP, SEXP pSEXP, SEXP nSEXP, SEXP stop_criterionSEXP, SEXP deltaSEXP, SEXP nuSEXP, SEXP interSEXP, SEXP epsilon1SEXP, SEXP epsilon2SEXP, SEXP fixed_BSEXP, SEXP print_tSEXP, SEXP omega_0SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -30,7 +30,8 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type epsilon2(epsilon2SEXP);
     Rcpp::traits::input_parameter< bool >::type fixed_B(fixed_BSEXP);
     Rcpp::traits::input_parameter< bool >::type print_t(print_tSEXP);
-    rcpp_result_gen = Rcpp::wrap(HMFGraph_Gem_algorithm_cpp(iters, S, B, p, n, stop_criterion, delta, nu, inter, epsilon1, epsilon2, fixed_B, print_t));
+    Rcpp::traits::input_parameter< arma::mat >::type omega_0(omega_0SEXP);
+    rcpp_result_gen = Rcpp::wrap(HMFGraph_Gem_algorithm_cpp(iters, S, B, p, n, stop_criterion, delta, nu, inter, epsilon1, epsilon2, fixed_B, print_t, omega_0));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -65,6 +66,17 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< NumericMatrix >::type upper(upperSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
     rcpp_result_gen = Rcpp::wrap(interval_adjacency(lower, upper, k));
+    return rcpp_result_gen;
+END_RCPP
+}
+// timesTwo
+NumericVector timesTwo(NumericVector x);
+RcppExport SEXP _HMFGraph_timesTwo(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(timesTwo(x));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -152,9 +164,10 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_HMFGraph_HMFGraph_Gem_algorithm_cpp", (DL_FUNC) &_HMFGraph_HMFGraph_Gem_algorithm_cpp, 13},
+    {"_HMFGraph_HMFGraph_Gem_algorithm_cpp", (DL_FUNC) &_HMFGraph_HMFGraph_Gem_algorithm_cpp, 14},
     {"_HMFGraph_gibbs_algorithm_cpp", (DL_FUNC) &_HMFGraph_gibbs_algorithm_cpp, 11},
     {"_HMFGraph_interval_adjacency", (DL_FUNC) &_HMFGraph_interval_adjacency, 3},
+    {"_HMFGraph_timesTwo", (DL_FUNC) &_HMFGraph_timesTwo, 1},
     {"_HMFGraph_mvrnorm_cpp", (DL_FUNC) &_HMFGraph_mvrnorm_cpp, 3},
     {"_HMFGraph_rajat_Cpp", (DL_FUNC) &_HMFGraph_rajat_Cpp, 4},
     {"_HMFGraph_rcpparma_hello_world", (DL_FUNC) &_HMFGraph_rcpparma_hello_world, 0},

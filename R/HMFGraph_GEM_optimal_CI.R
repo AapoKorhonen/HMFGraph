@@ -30,7 +30,7 @@ HMFGraph_GEM_optimal_CI <- function(HMFGraph_GEM_RESULTS, permutations, expected
   
   FP <- permutations$qp_connections_permutation
   
-  FN <- expected_connections -TP
+  FN <- expected_connections - TP
   
   
   F1 <- (2*TP)/(2*TP+FP+FN)
@@ -38,24 +38,12 @@ HMFGraph_GEM_optimal_CI <- function(HMFGraph_GEM_RESULTS, permutations, expected
   N <- (HMFGraph_GEM_RESULTS$p^2/2 - HMFGraph_GEM_RESULTS$p)/2 - expected_connections
   
   TN <- N - permutations$qp_connections_permutation
-  
-  #MCC <- ( (TP*TN)-(FP*FN) )/ (sqrt( (TP+FP)*(TP+FN)*(TN+FP)*(TN+FN)  )   )
 
   F1[is.nan(F1)] <- 0
   F1[is.na(F1)] <- 0
   
-  # MCC[is.nan(MCC)] <- 0
-  # MCC[is.na(MCC)] <- 0
-  
   quantile_point <- permutations$quantile_points[F1==max(F1[!is.nan(F1)])][1]
-  print(quantile_point)
-  
-  # if(MCC){
-  #   quantile_point <- permutations$quantile_points[MCC==max(MCC[!is.nan(MCC)])][1]
-  # }
-  # 
-  
-  
+
   MAP_estimate <- HMFGraph_GEM_RESULTS$omega 
   
   variance_matrix <- HMFGraph_GEM_RESULTS$varmat 
@@ -84,5 +72,5 @@ HMFGraph_GEM_optimal_CI <- function(HMFGraph_GEM_RESULTS, permutations, expected
   
   return(list(adjacency_matrix = adjacency_matrix, MAP_estimate =  MAP_estimate,
               variance_matrix =  variance_matrix, lower_CI = lower_CI,
-              upper_CI = upper_CI) ) 
+              upper_CI = upper_CI, F1=max(F1[!is.nan(F1)]), quantile_point =quantile_point ))  
 }

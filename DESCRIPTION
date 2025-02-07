@@ -10,8 +10,10 @@ License: GPL (>= 3)
 Encoding: UTF-8
 Imports: 
     CholWishart,
+    corpcor,
     doSNOW,
     foreach,
+    nlshrink,
     parallel,
     progress,
     Rcpp (>= 1.0.12),
