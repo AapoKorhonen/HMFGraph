@@ -13,10 +13,6 @@ interval_adjacency <- function(lower, upper, k) {
     .Call(`_HMFGraph_interval_adjacency`, lower, upper, k)
 }
 
-timesTwo <- function(x) {
-    .Call(`_HMFGraph_timesTwo`, x)
-}
-
 mvrnorm_cpp <- function(n, mu, Sigma) {
     .Call(`_HMFGraph_mvrnorm_cpp`, n, mu, Sigma)
 }

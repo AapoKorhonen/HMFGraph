@@ -70,9 +70,9 @@ List HMFGraph_Gem_algorithm_cpp(int iters, arma::mat S, const arma::mat B, int p
         
         double shape = (delta + p - 1) * 0.5 ;
         
-        double scale = ((delta +p- 1))* ( (phi_new(ii, ii)) * 0.5 );
+        double rate = ((delta +p- 1))* ( (phi_new(ii, ii)) * 0.5 );
         
-        B_i(ii, ii) =  1/(  (scale) / (shape + 1) ) ;
+        B_i(ii, ii) =  (shape - 1) / (rate)  ;
       } 
 
       

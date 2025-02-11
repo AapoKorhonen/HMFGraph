@@ -9,7 +9,7 @@
 #' @param stop_criterion Stopping criterion for GEM algorithm
 #' @param epsilon1 A shape parameter for Inverse_gamma prior. If a flat prior on logarithmic scale is used, this values should be set to 0.
 #' @param epsilon2 A scale parameter for Inverse_gamma prior. If a flat prior on logarithmic scale is used, this values should be set to 0.
-#' @param B The initial value for the inverse of the target matrix B. If fixed_B is TRUE, then this value will not change for the whole sampling process.
+#' @param B The initial value for the target matrix B. If fixed_B is TRUE, then this value will not change for the whole sampling process.
 #' @param omega_0 The initial value for Omega. On default it is an identity matrix. A correctly selected initial value can speed up the algorithm, e.i. warm start.
 #' @param fixed_B Boolean value. If TRUE, then no prior for target matrix B is used.
 #' @param inter Interval of iterations when info about algorithm is printed out.

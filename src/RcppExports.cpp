@@ -69,17 +69,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// timesTwo
-NumericVector timesTwo(NumericVector x);
-RcppExport SEXP _HMFGraph_timesTwo(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(timesTwo(x));
-    return rcpp_result_gen;
-END_RCPP
-}
 // mvrnorm_cpp
 arma::mat mvrnorm_cpp(int n, const arma::vec& mu, const arma::mat& Sigma);
 RcppExport SEXP _HMFGraph_mvrnorm_cpp(SEXP nSEXP, SEXP muSEXP, SEXP SigmaSEXP) {
@@ -167,7 +156,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_HMFGraph_HMFGraph_Gem_algorithm_cpp", (DL_FUNC) &_HMFGraph_HMFGraph_Gem_algorithm_cpp, 14},
     {"_HMFGraph_gibbs_algorithm_cpp", (DL_FUNC) &_HMFGraph_gibbs_algorithm_cpp, 11},
     {"_HMFGraph_interval_adjacency", (DL_FUNC) &_HMFGraph_interval_adjacency, 3},
-    {"_HMFGraph_timesTwo", (DL_FUNC) &_HMFGraph_timesTwo, 1},
     {"_HMFGraph_mvrnorm_cpp", (DL_FUNC) &_HMFGraph_mvrnorm_cpp, 3},
     {"_HMFGraph_rajat_Cpp", (DL_FUNC) &_HMFGraph_rajat_Cpp, 4},
     {"_HMFGraph_rcpparma_hello_world", (DL_FUNC) &_HMFGraph_rcpparma_hello_world, 0},
