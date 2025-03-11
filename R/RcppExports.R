@@ -5,14 +5,6 @@ HMFGraph_Gem_algorithm_cpp <- function(iters, S, B, p, n, stop_criterion, delta,
     .Call(`_HMFGraph_HMFGraph_Gem_algorithm_cpp`, iters, S, B, p, n, stop_criterion, delta, nu, inter, epsilon1, epsilon2, fixed_B, print_t, omega_0)
 }
 
-HMFGraph_dynamic_Gem_algorithm_cpp <- function(iters, S, time_points, B, p, n, stop_criterion, delta_list, nu_list, lambda_list, l1_k, l2_k, inter, epsilon1, epsilon2, fixed_B, print_t) {
-    .Call(`_HMFGraph_HMFGraph_dynamic_Gem_algorithm_cpp`, iters, S, time_points, B, p, n, stop_criterion, delta_list, nu_list, lambda_list, l1_k, l2_k, inter, epsilon1, epsilon2, fixed_B, print_t)
-}
-
-HMFGraph_dynamic_T_Gem_algorithm_cpp <- function(iters, S, time_points, B, p, n, stop_criterion, a, b, c, d, inter, epsilon1, epsilon2, fixed_B, print_t, omega_0) {
-    .Call(`_HMFGraph_HMFGraph_dynamic_T_Gem_algorithm_cpp`, iters, S, time_points, B, p, n, stop_criterion, a, b, c, d, inter, epsilon1, epsilon2, fixed_B, print_t, omega_0)
-}
-
 gibbs_algorithm_cpp <- function(iters, S, B, p, n, delta, nu, epsilon1, epsilon2, fixed_B = FALSE, print_t = TRUE, a_lim = 0.0001, b_lim = 10000, Omega0) {
     .Call(`_HMFGraph_gibbs_algorithm_cpp`, iters, S, B, p, n, delta, nu, epsilon1, epsilon2, fixed_B, print_t, a_lim, b_lim, Omega0)
 }
