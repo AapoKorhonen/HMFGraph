@@ -33,7 +33,7 @@ using namespace Rcpp;
 
 List HMFGraph_Gem_algorithm_cpp(int iters, arma::mat S, const arma::mat B, int p, int n
                                   , double stop_criterion, double delta, double nu, int inter, double epsilon1
-                                  , double epsilon2, bool fixed_B,bool print_t, arma::mat omega_0 = arma::eye(1,1)
+                                  , double epsilon2, bool fixed_B,bool print_t, const arma::mat omega_0
                                   ) {
   
   arma::mat B_i = B;
@@ -68,9 +68,9 @@ List HMFGraph_Gem_algorithm_cpp(int iters, arma::mat S, const arma::mat B, int p
       
       for(int ii = 0; ii < p; ii++) {
         
-        double shape = (delta + p - 1) * 0.5 ;
+        double shape = (delta + p - 1) * 0.5 + epsilon1 ;
         
-        double rate = ((delta +p- 1))* ( (phi_new(ii, ii)) * 0.5 );
+        double rate = ((delta +p- 1))* ( (phi_new(ii, ii)) * 0.5 ) + epsilon2;
         
         B_i(ii, ii) =  (shape - 1) / (rate)  ;
       } 

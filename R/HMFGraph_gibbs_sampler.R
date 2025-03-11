@@ -24,7 +24,8 @@
 #' @examples generated_data <- data_generator(n=n, p = p)
 #' @examples results_HMFGraph_gibbs <- HMFGraph_gibbs_sampler(generated_data$data, alpha = p*5/(p*5+n), beta=0.9, iters = 5000, burn_in = 1000)
 HMFGraph_gibbs_sampler <- function(data, p = 0,  n = 0, 
-                              alpha = -1,  beta = 0.9, iters = 5000, burn_in = 1000, epsilon1 = 0, epsilon2 = 0, B = 0,fixed_B = F, print_t=T){
+                              alpha = 0.9,  beta = 0.9, iters = 5000, burn_in = 1000, epsilon1 = 0.001, epsilon2 = 0.001, B = NULL,fixed_B = F, print_t=T,
+                              a_lim = 0.0001,  b_lim =10^5, omega0=NULL){
   
   
   # If n is not specified, the number of samples are derived from the dimension of the data matrix
@@ -36,28 +37,21 @@ HMFGraph_gibbs_sampler <- function(data, p = 0,  n = 0,
     p = dim(data)[2]
   }
   
-  if(B == 0){
+  if(is.null(B)){
     B = diag(p)
   }
   
-  if(alpha == -1){
-    
-    fn <- function(x){
-      tulos <- logmarginal(x,n,p,eigen(  diag(p), only.values = T)$values, eigen(  solve(diag(p)) %*% (n*cov(scale(data))), only.values = T)$values)
-      return(Re(tulos))
-    }
-    nu <- optimize( fn,interval = c(alpha_to_nu(p,n,0.001),  alpha_to_nu(p,n,0.999)), maximum = TRUE )$maximum
-    alpha <- nu_to_alpha(p,n,nu)
-  }
-  else{
-    nu <- alpha_to_nu(p = p, n = n , alpha = alpha)
+  if(is.null(omega0)){
+    omega0 = diag(p)
   }
   
+  nu <- alpha_to_nu(p = p, n = n , alpha = alpha)
   delta <- beta_to_delta(p = p,n = n, nu = nu , beta = beta)
   
   
   posterior_samples <-  gibbs_algorithm_cpp(iters+burn_in, cov(data),B= B, p =p, n = n, 
-                         delta = delta,  nu = nu, epsilon1 = epsilon1 , epsilon2 = epsilon2, fixed_B, print_t=print_t)
+                         delta = delta,  nu = nu, epsilon1 = epsilon1 , epsilon2 = epsilon2, fixed_B, print_t=print_t,
+                         a_lim, b_lim, Omega0=omega0)
   
   # Removing the burn in
   posterior_samples$omega <- posterior_samples$omega[,, (burn_in+1):(iters+burn_in) ]  

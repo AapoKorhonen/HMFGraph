@@ -8,12 +8,12 @@
 #' @examples
 
 alpha_binary_search <- function(data, p = NULL,  n = NULL, 
-                                alpha = -1,  beta = 0.9, max_iters = 10000,
-                                stop_criterion = 10^(-6)  ,epsilon1 = 0, epsilon2 = 0,
+                                alpha = 0,  beta = 0.9, max_iters = 10000,
+                                stop_criterion = 10^(-6)  ,epsilon1 = 0.001, epsilon2 = 0.001,
                                 B = diag(p),fixed_B = F, inter=500,  print_t=T,
                                 kappa_max=NULL, omega_0 = diag(p),
-                                max_steps=50, threshold=0.05, lower_alpha = p/(p+n),
-                                print_binary_search=F){
+                                max_steps=50, threshold=0.05, lower_alpha = NULL,
+                                print_binary_search=F, upper_alpha_O = 0.95){
   
 
   if(is.null(n)){
@@ -35,10 +35,15 @@ alpha_binary_search <- function(data, p = NULL,  n = NULL,
     lower_alpha = p/(n+p)
   }
   
+  
   lower_alpha <- lower_alpha
-  upper_alpha <- 0.999
+  upper_alpha <- upper_alpha_O
   
   alpha_p <- (lower_alpha+upper_alpha)/2
+  
+  if(kappa_max < 4){
+    alpha_p = upper_alpha
+  }
   
   omega_0 = diag(p)
   
@@ -50,16 +55,17 @@ alpha_binary_search <- function(data, p = NULL,  n = NULL,
   eigen_max <- 0
   eigen_min <- 0
   
-  alpha <- 0.999
-  
+  alpha <- upper_alpha_O
   if(print_binary_search){
     cat("Kappa max: " , kappa_max, "\n")
   }
   
   for(i in c(1:max_steps)){
     
+    
     nu <- alpha_to_nu(p = p, n = n , alpha = alpha_p)
-    delta <- max(beta_to_delta(p = p,n = n, nu = nu , beta = beta),1)
+    delta <- beta_to_delta(p,n,nu,beta)
+    beta <- delta_to_beta(p,n,nu,delta)
     
     HMFGraph_GEM_MAP <-  HMFGraph_Gem_algorithm_cpp(iters = max_iters, S = cov(data) ,
                                                     B = B,  p = p, n = n, stop_criterion = stop_criterion,
@@ -84,7 +90,7 @@ alpha_binary_search <- function(data, p = NULL,  n = NULL,
       
     }
     
-    
+   
     if(err < 0){
       if(abs(err) < threshold){
         alpha <- alpha_p
@@ -92,6 +98,10 @@ alpha_binary_search <- function(data, p = NULL,  n = NULL,
       }
     }
     if(err > 0){
+      if(alpha_p == upper_alpha_O){
+        alpha <- alpha_p
+        break
+      }
       lower_alpha <- alpha_p
       alpha_p <- (lower_alpha+upper_alpha)/2
     }
@@ -99,13 +109,11 @@ alpha_binary_search <- function(data, p = NULL,  n = NULL,
       upper_alpha <- alpha_p
       alpha_p <- (lower_alpha+upper_alpha)/2
     }
-    if(alpha_p == 0.999){
-      alpha <- alpha_p
-      break
-    }
-    
     if(print_binary_search){
       cat("New alpha: " ,alpha_p, "\n")
+    }
+    if(i == max_steps){
+      alpha <- alpha_p
     }
     
   }
