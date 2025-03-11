@@ -25,7 +25,6 @@ List gibbs_algorithm_cpp(int iters, const arma::mat& S, arma::mat B, int p, int 
   //B_i = B;
   Phi = B;
   arma::mat Omega10 = Omega0;
-  double B_ii;
   
   for (int i = 0; i < iters; ++i) {
     
