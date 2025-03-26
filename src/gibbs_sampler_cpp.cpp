@@ -16,13 +16,11 @@ List gibbs_algorithm_cpp(int iters, const arma::mat& S, arma::mat B, int p, int 
   
   arma::cube Omega(p, p, iters + 1, arma::fill::zeros);
   arma::mat Phi;
-  //arma::mat B_i;
-  arma::cube  B_i(p, p, iters + 1, arma::fill::zeros);
+  arma::mat B_i;
   
   Omega.slice(0).eye();  // diag(p)
-  B_i.slice(0) = B;
   
-  //B_i = B;
+  B_i = B;
   Phi = B;
   arma::mat Omega10 = Omega0;
   
@@ -30,7 +28,7 @@ List gibbs_algorithm_cpp(int iters, const arma::mat& S, arma::mat B, int p, int 
     
     progress_bar.increment();
     
-    arma::mat L1 = arma::inv(  (delta + p - 1)*B_i.slice(i) + (nu - p - 1)*Omega.slice(i));
+    arma::mat L1 = arma::inv(  (delta + p - 1)*B_i + (nu - p - 1)*Omega.slice(i));
     
     // Sampling the Phi matrix
     arma::mat Phi = arma::wishrnd ( L1, nu + delta + p - 1);
@@ -54,15 +52,8 @@ List gibbs_algorithm_cpp(int iters, const arma::mat& S, arma::mat B, int p, int 
         double rate = (delta +p- 1)*(Phi(ii,ii) *0.5 ) +  epsilon2 ;
         
         // Sampling B-matrix. Using shape and scale parametrization 
-        //B_i(ii, ii) = R::rgamma( shape ,  1 / rate  );  
-        double B_d_ii = R::rgamma( shape ,  1 / rate  );
-        arma::mat B_ii = B_i.slice(i + 1);
-        B_ii(ii,ii) = B_d_ii;
-        B_i.slice(i + 1) = B_ii;
+        B_i(ii, ii) = R::rgamma( shape ,  1 / rate  );  
       }
-    }
-    else{
-      B_i.slice(i + 1) = B_i.slice(i);
     }
   }
   

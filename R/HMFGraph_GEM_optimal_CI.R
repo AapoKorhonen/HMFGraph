@@ -18,7 +18,7 @@
 #' @examples results_optimal_CI <- HMFGraph_GEM_optimal_CI(results_HMFGraph_GEM, permutations, expected_connections = p)
 #' @examples library(qgraph)
 #' @examples qgraph(results_optimal_CI$adjacency_matrix)
-HMFGraph_GEM_optimal_CI <- function(HMFGraph_GEM_RESULTS, permutations, expected_connections= NULL){
+HMFGraph_GEM_optimal_CI <- function(HMFGraph_GEM_RESULTS, permutations, expected_connections= NULL, MCC=F){
   
   #param MCC # If TRUE, then  the optimal credible interval will be determined by an approximative MCC. Other wise an approximative F1 -value.
   
@@ -41,6 +41,16 @@ HMFGraph_GEM_optimal_CI <- function(HMFGraph_GEM_RESULTS, permutations, expected
 
   F1[is.nan(F1)] <- 0
   F1[is.na(F1)] <- 0
+  
+  if(MCC){
+    
+    MCC <- (TP * TN - FP * FN) / sqrt((TP + FP) * (TP + FN) * (TN + FP) * (TN + FN))
+    
+    MCC[is.na(MCC)] <- 0
+    F1 <- MCC
+    
+  }
+  
   
   quantile_point <- permutations$quantile_points[F1==max(F1[!is.nan(F1)])][1]
 
