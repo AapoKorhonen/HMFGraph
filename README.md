@@ -19,6 +19,37 @@ You can install the package using the following commands:
 devtools::install_github("AapoKorhonen/HMFGraph")
 ```
 
+## Example using optimal CI for edge selection
+
+This is the recommended way to use this method. The HMFGraph_GEM
+function selects an optimal alpha value based on a condition number
+constraint method (if the alpha is not specified in the function call).
+HMFGraph_GEM_permutations calculates the null network (or null
+distribution) and HMFGraph_GEM_optimal_CI selects the optimal credible
+interval (CI) based on the permutations.
+
+``` r
+library(HMFGraph)
+
+n <- 200
+p <- 100
+
+set.seed(42)
+generated_data <- data_generator(n=n, p = p)
+
+results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, beta=0.9)
+
+permutations <- HMFGraph_GEM_permutations(generated_data$data, results_HMFGraph_GEM, number_of_permutations = 50, parallel = T)
+
+results_optimal_CI <- HMFGraph_GEM_optimal_CI(results_HMFGraph_GEM, permutations, expected_connections = p)
+
+library(qgraph)
+
+qgraph(results_optimal_CI$adjacency_matrix)
+```
+
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+
 ## Example using FDR-control for edge selection
 
 ``` r
@@ -30,39 +61,15 @@ p <- 100
 set.seed(42)
 generated_data <- data_generator(n=n, p = p)
 
-results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, alpha = p*5/(p*5+n), beta=0.9)
+results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, beta=0.9)
 
-permutations <- HMFGraph_GEM_permutations(generated_data$data, results_HMFGraph_GEM, number_of_permutations = 100, parallel = F)
+permutations <- HMFGraph_GEM_permutations(generated_data$data, results_HMFGraph_GEM, number_of_permutations = 50, parallel = T)
 
 results_FDR <- HMFGraph_GEM_FDR_control(results_HMFGraph_GEM, permutations, target_FDR = 0.2)
 
 library(qgraph)
 
 qgraph(results_FDR$adjacency_matrix)
-```
-
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
-
-## Example using optimal CI for edge selection
-
-``` r
-library(HMFGraph)
-
-n <- 200
-p <- 100
-
-set.seed(42)
-generated_data <- data_generator(n=n, p = p)
-
-results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, alpha =  p*5/(p*5+n), beta=0.9)
-
-permutations <- HMFGraph_GEM_permutations(generated_data$data, results_HMFGraph_GEM, number_of_permutations = 100, parallel = F)
-
-results_optimal_CI <- HMFGraph_GEM_optimal_CI(results_HMFGraph_GEM, permutations, expected_connections = 100)
-
-library(qgraph)
-
-qgraph(results_optimal_CI$adjacency_matrix)
 ```
 
 <img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
@@ -78,9 +85,9 @@ p <- 100
 set.seed(42)
 generated_data <- data_generator(n=n, p = p)
 
-results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, alpha = p*5/(p*5+n), beta=0.9)
+results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, beta=0.9)
 
-results_CI <- HMFGraph_GEM_CI(results_HMFGraph_GEM, CI = 0.8)
+results_CI <- HMFGraph_GEM_CI(results_HMFGraph_GEM, CI = 0.9)
 
 library(qgraph)
 
@@ -100,9 +107,11 @@ p <- 100
 set.seed(42)
 generated_data <- data_generator(n=n, p = p)
 
-results_HMFGraph_gibbs <- HMFGraph_gibbs_sampler(generated_data$data, alpha = p*5/(p*5+n), beta=0.9, iters = 5000, burn_in = 1000)
+alpha <- alpha_binary_search(generated_data$data)
 
-results_gibbs_CI <- HMFGraph_gibbs_CI(results_HMFGraph_gibbs, CI = 0.8)
+results_HMFGraph_gibbs <- HMFGraph_gibbs_sampler(generated_data$data, alpha = alpha, beta=0.9, iters = 5000, burn_in = 1000)
+
+results_gibbs_CI <- HMFGraph_gibbs_CI(results_HMFGraph_gibbs, CI = 0.9)
 
 library(qgraph)
 
