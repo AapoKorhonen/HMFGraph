@@ -36,7 +36,7 @@
 #' @examples library(qgraph)
 #' @examples qgraph(results$adjacency_matrix)
 #' 
-HMFGraph_GEM <- function(data, p = NULL,  n = NULL, 
+HMFGraph <- function(data, p = NULL,  n = NULL, 
                          alpha = -1,  beta = 0.9, max_iters = 10000,
                          stop_criterion = 10^(-6)  ,epsilon1 = 0.001, epsilon2 = 0.001,
                          B = NULL,fixed_B = F, inter=500,  print_t=T,
@@ -150,8 +150,6 @@ HMFGraph_GEM <- function(data, p = NULL,  n = NULL,
     }
     
     
-    
-    #base::close(pb)
     parallel::stopCluster(cl)
     
     if(median_p){
@@ -208,7 +206,7 @@ HMFGraph_GEM <- function(data, p = NULL,  n = NULL,
   
   cat("Permutations finished", "\n")
   
-  qp_connections <- rajat_Cpp(HMFGraph_GEM_MAP$omega,sqrt(HMFGraph_GEM_MAP$varmat),HMFGraph_GEM_MAP$p,quantile_points)
+  qp_connections <- rajat_Cpp(HMFGraph_GEM_MAP$omega,sqrt(HMFGraph_GEM_MAP$varmat),p,quantile_points)
   
   
   

@@ -21,7 +21,29 @@ devtools::install_github("AapoKorhonen/HMFGraph")
 
 ## Example 1: Using optimal CI for edge selection
 
-This is the recommended way to use this method. The HMFGraph_GEM
+This is the recommended way to use this method. Using the function
+HMFGraph, the method is simple to run.
+
+``` r
+library(HMFGraph)
+
+n <- 200
+p <- 100
+
+set.seed(42)
+generated_data <- data_generator(n=n, p = p)
+
+results <- HMFGraph(generated_data$data, parallel = T, seed=42)
+
+library(qgraph)
+
+qgraph(results$adjacency_matrix)
+```
+
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+
+The function HMFGraph is a wrapper of three different function. If
+prefered, the user can run the function individually. The HMFGraph_GEM
 function selects an optimal alpha value based on a condition number
 constraint method (if the alpha is not specified in the function call).
 HMFGraph_GEM_permutations calculates the null network (or null
@@ -39,7 +61,7 @@ generated_data <- data_generator(n=n, p = p)
 
 results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, beta=0.9)
 
-permutations <- HMFGraph_GEM_permutations(generated_data$data, results_HMFGraph_GEM, number_of_permutations = 50, parallel = T)
+permutations <- HMFGraph_GEM_permutations(generated_data$data, results_HMFGraph_GEM, number_of_permutations = 50, parallel = T, seed=42)
 
 results_optimal_CI <- HMFGraph_GEM_optimal_CI(results_HMFGraph_GEM, permutations, expected_connections = p)
 
@@ -48,7 +70,7 @@ library(qgraph)
 qgraph(results_optimal_CI$adjacency_matrix)
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
 
 ## Example 2: Using FDR-control for edge selection
 
@@ -72,7 +94,7 @@ library(qgraph)
 qgraph(results_FDR$adjacency_matrix)
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
 ## Example 3: Using CI for edge selection
 
@@ -94,7 +116,7 @@ library(qgraph)
 qgraph(results_CI$adjacency_matrix)
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
 ## Example 4: Using Gibbs sampler with CI for edge selection
 
@@ -118,4 +140,4 @@ library(qgraph)
 qgraph(results_gibbs_CI$adjacency_matrix)
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
