@@ -19,7 +19,7 @@ You can install the package using the following commands:
 devtools::install_github("AapoKorhonen/HMFGraph")
 ```
 
-## Example using optimal CI for edge selection
+## Example 1: Using optimal CI for edge selection
 
 This is the recommended way to use this method. The HMFGraph_GEM
 function selects an optimal alpha value based on a condition number
@@ -50,7 +50,7 @@ qgraph(results_optimal_CI$adjacency_matrix)
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
-## Example using FDR-control for edge selection
+## Example 2: Using FDR-control for edge selection
 
 ``` r
 library(HMFGraph)
@@ -74,7 +74,7 @@ qgraph(results_FDR$adjacency_matrix)
 
 <img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
 
-## Example using CI for edge selection
+## Example 3: Using CI for edge selection
 
 ``` r
 library(HMFGraph)
@@ -96,7 +96,7 @@ qgraph(results_CI$adjacency_matrix)
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
-## Example using Gibbs sampler with CI for edge selection
+## Example 4: Using Gibbs sampler with CI for edge selection
 
 ``` r
 library(HMFGraph)

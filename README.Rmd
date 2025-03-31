@@ -30,7 +30,7 @@ devtools::install_github("AapoKorhonen/HMFGraph")
 ```
 
 
-## Example using optimal CI for edge selection
+## Example 1: Using optimal CI for edge selection
 
 This is the recommended way to use this method. The HMFGraph_GEM function selects an optimal alpha value based on a condition number constraint method (if the alpha is not specified in the function call). HMFGraph_GEM_permutations calculates the null network (or null distribution) and HMFGraph_GEM_optimal_CI selects the optimal credible interval (CI) based on the permutations.
 
@@ -56,7 +56,7 @@ qgraph(results_optimal_CI$adjacency_matrix)
 
 ```
 
-## Example using FDR-control for edge selection
+## Example 2: Using FDR-control for edge selection
 
 
 
@@ -84,7 +84,7 @@ qgraph(results_FDR$adjacency_matrix)
 
 
 
-## Example using CI for edge selection
+## Example 3: Using CI for edge selection
 
 
 
@@ -109,7 +109,7 @@ qgraph(results_CI$adjacency_matrix)
 
 
 
-## Example using Gibbs sampler with CI for edge selection
+## Example 4: Using Gibbs sampler with CI for edge selection
 
 
 

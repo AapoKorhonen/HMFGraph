@@ -4,6 +4,7 @@
 #' @param HMFGraph_GEM_RESULTS  Results from the function HMFGraph_GEM
 #' @param permutations   Results from the function HMFGraph_GEM_permutation
 #' @param expected_connections  An expected number of connections in the real network. The default value is p, or the number of variables.
+#' @param MCC If True then MCC will be used in the place of F1.
 #'
 #' @return  Returns the adjacency matrix, the map estimate, the variance matrix, lower and upper credible interval point matrices.
 #' @export
