@@ -12,7 +12,7 @@
 #' @examples p <- 100
 #' @examples set.seed(42)
 #' @examples generated_data <- data_generator(n=n, p = p, d=p)
-data_generator <- function(n, p, d=0){
+data_generator <- function(n, p, d=0, lower_p = 0.2,upper_p = 0.9){
 
   
   if(d==0){
@@ -31,10 +31,10 @@ data_generator <- function(n, p, d=0){
   
   for(i in 1:d){
     if (0.5 < runif(1)){
-      connections_S[i] <- runif(1, 0.2, 0.9)
+      connections_S[i] <- runif(1, lower_p, upper_p)
     }
     else{
-      connections_S[i] <- runif(1, -0.9, -0.2)
+      connections_S[i] <- runif(1, -1*upper_p, -1*lower_p)
       
       
     }

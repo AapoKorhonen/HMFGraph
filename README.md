@@ -33,7 +33,7 @@ p <- 100
 set.seed(42)
 generated_data <- data_generator(n=n, p = p)
 
-results <- HMFGraph(generated_data$data, parallel = T, seed=42)
+results <- HMFGraph(generated_data$data, parallel = T)
 
 library(qgraph)
 
@@ -45,10 +45,11 @@ qgraph(results$adjacency_matrix)
 The function HMFGraph is a wrapper of three different function. If
 prefered, the user can run the function individually. The HMFGraph_GEM
 function selects an optimal alpha value based on a condition number
-constraint method (if the alpha is not specified in the function call).
+constraint method (if the alpha is not specified in the function call)
+and uses the GEM algorithm to obtain a MAP estimate.
 HMFGraph_GEM_permutations calculates the null network (or null
-distribution) and HMFGraph_GEM_optimal_CI selects the optimal credible
-interval (CI) based on the permutations.
+distribution) with permutations and HMFGraph_GEM_optimal_CI selects the
+optimal credible interval (CI) based on the permutations.
 
 ``` r
 library(HMFGraph)
@@ -61,7 +62,7 @@ generated_data <- data_generator(n=n, p = p)
 
 results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, beta=0.9)
 
-permutations <- HMFGraph_GEM_permutations(generated_data$data, results_HMFGraph_GEM, number_of_permutations = 50, parallel = T, seed=42)
+permutations <- HMFGraph_GEM_permutations(generated_data$data, results_HMFGraph_GEM, number_of_permutations = 50, parallel = T)
 
 results_optimal_CI <- HMFGraph_GEM_optimal_CI(results_HMFGraph_GEM, permutations, expected_connections = p)
 

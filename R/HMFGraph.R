@@ -93,7 +93,7 @@ HMFGraph <- function(data, p = NULL,  n = NULL,
                                                   omega_0 = omega_0)  
   
   
-  
+  print(HMFGraph_GEM_MAP$omega)
   if(is.null(omega_0)){
     omega_0 = diag(p)
   }
@@ -144,7 +144,7 @@ HMFGraph <- function(data, p = NULL,  n = NULL,
       
       
       
-      qp_connections <- rajat_Cpp(HMFGraph_GEM_results_permutation$omega,sqrt(HMFGraph_GEM_MAP$varmat),p,quantile_points)
+      qp_connections <- rajat_Cpp(HMFGraph_GEM_results_permutation$omega,sqrt(HMFGraph_GEM_results_permutation$varmat),p,quantile_points)
       
       qp_connections
     }
@@ -188,7 +188,7 @@ HMFGraph <- function(data, p = NULL,  n = NULL,
                                                        print_t=F, omega_0 = omega_0 )
       
       
-      qp_connections_permutation[i,] <- rajat_Cpp(HMFGraph_GEM_results_permutation$omega,sqrt(HMFGraph_GEM_MAP$varmat),p,quantile_points)
+      qp_connections_permutation[i,] <- rajat_Cpp(HMFGraph_GEM_results_permutation$omega,sqrt(HMFGraph_GEM_results_permutation$varmat),p,quantile_points)
       
       
     }
@@ -213,13 +213,11 @@ HMFGraph <- function(data, p = NULL,  n = NULL,
   if(is.null( expected_connections )){
     expected_connections <- p
   }
-  
   TP <- qp_connections - qp_connections_permutation 
   
   FP <- qp_connections_permutation
   
   FN <- expected_connections - TP
-  
   
   F1 <- (2*TP)/(2*TP+FP+FN)
   
@@ -271,5 +269,5 @@ HMFGraph <- function(data, p = NULL,  n = NULL,
   
   return(list(adjacency_matrix = adjacency_matrix, MAP_estimate =  MAP_estimate,
               variance_matrix =  variance_matrix, lower_CI = lower_CI,
-              upper_CI = upper_CI, F1=max(F1[!is.nan(F1)]), quantile_point =quantile_point, alpha=alpha,beta=beta ))  
+              upper_CI = upper_CI, F1=max(F1[!is.nan(F1)]), quantile_point =quantile_point, alpha=alpha,beta=beta))  
 }

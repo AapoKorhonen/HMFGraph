@@ -42,7 +42,7 @@ List HMFGraph_Gem_algorithm_cpp(int iters, arma::mat S, const arma::mat B, int p
   
   double beta = DeltatoBeta(delta, nu, n,  p);
   
-  arma::mat phi_new = arma::eye(p, p);
+  arma::mat phi_new = B;
   
   arma::mat omega_new = omega_0;
   
@@ -58,33 +58,39 @@ List HMFGraph_Gem_algorithm_cpp(int iters, arma::mat S, const arma::mat B, int p
   
   arma::mat L1 = arma::eye(p, p);
   
+  double shape;
+  double rate;
+  double ero;
+  double suhde;
+  
   for(int i = 0; i < iters; i++) {
+     
+     
+     if(!fixed_B){
+       
+       for(int ii = 0; ii < p; ii++) {
+         
+         shape = (delta + p - 1) * 0.5 + epsilon1 ;
+         
+         rate = ((delta +p- 1))* ( (phi_new(ii, ii)) * 0.5 ) + epsilon2;
+         
+         B_i(ii, ii) =  (shape - 1) / (rate)  ;
+       } 
+       
+       
+     }
      
     L1 = B_i*((delta +p- 1)) + omega_new*(nu-p- 1);
     
     phi_new = l1_k * arma::inv(L1);
       
-    if(!fixed_B){
-      
-      for(int ii = 0; ii < p; ii++) {
-        
-        double shape = (delta + p - 1) * 0.5 + epsilon1 ;
-        
-        double rate = ((delta +p- 1))* ( (phi_new(ii, ii)) * 0.5 ) + epsilon2;
-        
-        B_i(ii, ii) =  (shape - 1) / (rate)  ;
-      } 
-
-      
-    }
-
 
     L2 = arma::inv(phi_new*(nu-p- 1) + n*S);
     omega_new =  l2_k * L2 ;
     
     
-    double ero = norm(omega_new - omega_old, "fro");
-    double suhde = ero / norm(omega_old, "fro");
+    ero = norm(omega_new - omega_old, "fro");
+    suhde = ero / norm(omega_old, "fro");
     omega_old = omega_new;
     if(i % inter == 0) {
       if(print_t){

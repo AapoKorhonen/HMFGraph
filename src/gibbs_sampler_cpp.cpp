@@ -24,37 +24,43 @@ List gibbs_algorithm_cpp(int iters, const arma::mat& S, arma::mat B, int p, int 
   Phi = B;
   arma::mat Omega10 = Omega0;
   
+  double shape = 1; 
+  double rate = 1; 
+  
+  arma::mat L1;
+  arma::mat L2;
+  
   for (int i = 0; i < iters; ++i) {
     
     progress_bar.increment();
-    
-    arma::mat L1 = arma::inv(  (delta + p - 1)*B_i + (nu - p - 1)*Omega.slice(i));
-    
-    // Sampling the Phi matrix
-    arma::mat Phi = arma::wishrnd ( L1, nu + delta + p - 1);
-    
-    //
-    arma::mat L2 = arma::inv( (nu - p - 1)*Phi + n*S);
-    
-    // Sampling the precision matrix
-    arma::mat Omega10 = arma::wishrnd(L2,n + nu);
-    
-    Omega.slice(i + 1) = Omega10;
-    
     
     if (!fixed_B) {
       for (int ii = 0; ii < p; ++ii) {
         
         //shape
-        double shape = (delta + p - 1)*0.5 + epsilon1;
+        shape = (delta + p - 1)*0.5 + epsilon1;
         
         //rate
-        double rate = (delta +p- 1)*(Phi(ii,ii) *0.5 ) +  epsilon2 ;
+        rate = (delta +p- 1)*(Phi(ii,ii) *0.5 ) +  epsilon2 ;
         
         // Sampling B-matrix. Using shape and scale parametrization 
         B_i(ii, ii) = R::rgamma( shape ,  1 / rate  );  
       }
     }
+    
+    L1 = arma::inv(  (delta + p - 1)*B_i + (nu - p - 1)*Omega.slice(i));
+    
+    // Sampling the Phi matrix
+    Phi = arma::wishrnd ( L1, nu + delta + p - 1);
+    
+    //
+    L2 = arma::inv( (nu - p - 1)*Phi + n*S);
+    
+    // Sampling the precision matrix
+    Omega10 = arma::wishrnd(L2,n + nu);
+    
+    Omega.slice(i + 1) = Omega10;
+    
   }
   
   return List::create(Named("phi") = Phi,
