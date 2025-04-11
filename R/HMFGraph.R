@@ -92,8 +92,7 @@ HMFGraph <- function(data, p = NULL,  n = NULL,
                                                   fixed_B = fixed_B, print_t = print_t,
                                                   omega_0 = omega_0)  
   
-  
-  print(HMFGraph_GEM_MAP$omega)
+
   if(is.null(omega_0)){
     omega_0 = diag(p)
   }
