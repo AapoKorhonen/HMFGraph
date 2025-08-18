@@ -8,41 +8,26 @@
 using boost::math::tools::brent_find_minima;
 using boost::math::ibetac;
 
-double alphaToDelta(double alpha, int n, int p){
-  return (alpha*n+(1-alpha)*p+(1-alpha))/(1-alpha);
-}
-
-double deltaToAlpha(double delta, int n, int p){
-  return (delta-p-1)/(n+delta-p-1);
-}
-
-
-double BetatoDelta(double beta, double nu,  int n, int p){
-  return (beta*nu-p+1-2*beta)/(1-beta);
-}
-
-
-double DeltatoBeta(double delta, double nu,  int n, int p){
-  return (delta+p-1)/(delta+nu-2);
-}
-
-
 using namespace Rcpp;
 // [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::export]]
 
 List HMFGraph_Gem_algorithm_cpp(int iters, arma::mat S, const arma::mat B, int p, int n
                                   , double stop_criterion, double delta, double nu, int inter, double epsilon1
-                                  , double epsilon2, bool fixed_B,bool print_t, const arma::mat omega_0
+                                  , double epsilon2, bool fixed_B,bool print_t, const arma::mat omega_0, 
+                                  const arma::mat phi_0 = arma::eye(10,10)
                                   ) {
   
   arma::mat B_i = B;
   
-  double alpha = deltaToAlpha( nu,  n,  p);
+  arma::mat phi_new = arma::eye(p, p);
   
-  double beta = DeltatoBeta(delta, nu, n,  p);
-  
-  arma::mat phi_new = B;
+  if(arma::approx_equal(phi_0, arma::eye(10,10), "absdiff", 0.0002)){
+    phi_new = arma::eye(p, p);
+  }
+  else{
+    phi_new = phi_0;
+  }
   
   arma::mat omega_new = omega_0;
   
@@ -120,8 +105,6 @@ List HMFGraph_Gem_algorithm_cpp(int iters, arma::mat S, const arma::mat B, int p
     Named("omega") = omega_new,
     Named("B_i") = B_i,
     Named("phi") = phi_new,
-    Named("varmat") = varmat,
-    Named("alpha") = alpha,
-    Named("beta") = beta
+    Named("varmat") = varmat
   );
 }

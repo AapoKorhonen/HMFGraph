@@ -46,6 +46,7 @@ alpha_binary_search <- function(data, p = NULL,  n = NULL,
   }
   
   omega_0 = diag(p)
+  phi_0 = diag(p)
   
   if(print_binary_search){
     cat("Initial alpha: " , alpha_p, "\n")
@@ -71,13 +72,15 @@ alpha_binary_search <- function(data, p = NULL,  n = NULL,
                                                     B = B,  p = p, n = n, stop_criterion = stop_criterion,
                                                     delta = delta, nu = nu,  inter = inter, 
                                                     epsilon1 = epsilon1, epsilon2 = epsilon2,
-                                                    fixed_B = fixed_B, print_t = F,
-                                                    omega_0 = omega_0)  
+                                                    fixed_B = fixed_B, print_t = print_t,
+                                                    omega_0 = omega_0, phi_0 = phi_0)  
     
     
     
     B <- HMFGraph_GEM_MAP$B_i
     omega_0 <- HMFGraph_GEM_MAP$omega
+    phi_0 <- HMFGraph_GEM_MAP$phi
+    
     eigen_min <-min(eigen(HMFGraph_GEM_MAP$omega)$values ) 
     
     eigen_max <-max(eigen(HMFGraph_GEM_MAP$omega)$values ) 
