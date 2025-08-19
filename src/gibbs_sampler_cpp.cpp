@@ -3,6 +3,7 @@ using namespace Rcpp;
 #include <progress.hpp>
 #include <progress_bar.hpp>
 
+// [[Rcpp::depends(RcppProgress)]]
 // [[Rcpp::depends(RcppArmadillo)]]
 // Gibbs-algoritmi Rcpp:llä
 // [[Rcpp::export]]
