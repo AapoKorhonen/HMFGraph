@@ -15,18 +15,18 @@ using namespace Rcpp;
 List HMFGraph_Gem_algorithm_cpp(int iters, arma::mat S, const arma::mat B, int p, int n
                                   , double stop_criterion, double delta, double nu, int inter, double epsilon1
                                   , double epsilon2, bool fixed_B,bool print_t, const arma::mat omega_0, 
-                                  const arma::mat phi_0 = arma::eye(10,10)
+                                  SEXP phi_0 = R_NilValue
                                   ) {
   
   arma::mat B_i = B;
   
   arma::mat phi_new = arma::eye(p, p);
   
-  if(arma::approx_equal(phi_0, arma::eye(10,10), "absdiff", 0.0002)){
+  if(phi_0 == R_NilValue){
     phi_new = arma::eye(p, p);
   }
   else{
-    phi_new = phi_0;
+    phi_new = as<arma::mat>(phi_0);;
   }
   
   arma::mat omega_new = omega_0;

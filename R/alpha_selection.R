@@ -10,7 +10,7 @@
 alpha_binary_search <- function(data, p = NULL,  n = NULL, 
                                 alpha = 0,  beta = 0.9, max_iters = 10000,
                                 stop_criterion = 10^(-6)  ,epsilon1 = 0.001, epsilon2 = 0.001,
-                                B = diag(p),fixed_B = F, inter=500,  print_t=T,
+                                B = diag(p),fixed_B = F, inter=500,  print_t=F,
                                 kappa_max=NULL, omega_0 = diag(p),
                                 max_steps=50, threshold=0.05, lower_alpha = NULL,
                                 print_binary_search=F, upper_alpha_O = 0.95){

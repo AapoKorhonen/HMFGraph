@@ -42,7 +42,7 @@ HMFGraph <- function(data, p = NULL,  n = NULL,
                          B = NULL,fixed_B = F, inter=500,  print_t=T,
                          kappa_max=NULL, omega_0 = NULL,
                          max_steps=50, threshold=0.05, alpha_selection=F, 
-                         lower_alpha = p/(p+n), print_binary_search = F, 
+                         lower_alpha = p/(p+n), print_binary_search = F,print_t_alpha=F, 
                          number_of_permutations = 50, parallel = FALSE, seed = FALSE, 
                          n_cores = 0, median_p=T, 
                          expected_connections= NULL, MCC=F){
@@ -72,7 +72,7 @@ HMFGraph <- function(data, p = NULL,  n = NULL,
     alpha <- alpha_binary_search(data= data, p = p,  n = n, 
                                  alpha = alpha,  beta = beta, max_iters = max_iters,
                                  stop_criterion = stop_criterion  ,epsilon1 = epsilon1, 
-                                 epsilon2 = epsilon2, B = B,fixed_B = fixed_B, inter=inter, print_t=print_t,
+                                 epsilon2 = epsilon2, B = B,fixed_B = fixed_B, inter=inter, print_t=print_t_alpha,
                                  omega_0 = omega_0, max_steps=max_steps, threshold=threshold,
                                  lower_alpha = lower_alpha, print_binary_search=print_binary_search)
     

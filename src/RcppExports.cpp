@@ -12,7 +12,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
 // HMFGraph_Gem_algorithm_cpp
-List HMFGraph_Gem_algorithm_cpp(int iters, arma::mat S, const arma::mat B, int p, int n, double stop_criterion, double delta, double nu, int inter, double epsilon1, double epsilon2, bool fixed_B, bool print_t, const arma::mat omega_0, const arma::mat phi_0);
+List HMFGraph_Gem_algorithm_cpp(int iters, arma::mat S, const arma::mat B, int p, int n, double stop_criterion, double delta, double nu, int inter, double epsilon1, double epsilon2, bool fixed_B, bool print_t, const arma::mat omega_0, SEXP phi_0);
 RcppExport SEXP _HMFGraph_HMFGraph_Gem_algorithm_cpp(SEXP itersSEXP, SEXP SSEXP, SEXP BSEXP, SEXP pSEXP, SEXP nSEXP, SEXP stop_criterionSEXP, SEXP deltaSEXP, SEXP nuSEXP, SEXP interSEXP, SEXP epsilon1SEXP, SEXP epsilon2SEXP, SEXP fixed_BSEXP, SEXP print_tSEXP, SEXP omega_0SEXP, SEXP phi_0SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -31,7 +31,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< bool >::type fixed_B(fixed_BSEXP);
     Rcpp::traits::input_parameter< bool >::type print_t(print_tSEXP);
     Rcpp::traits::input_parameter< const arma::mat >::type omega_0(omega_0SEXP);
-    Rcpp::traits::input_parameter< const arma::mat >::type phi_0(phi_0SEXP);
+    Rcpp::traits::input_parameter< SEXP >::type phi_0(phi_0SEXP);
     rcpp_result_gen = Rcpp::wrap(HMFGraph_Gem_algorithm_cpp(iters, S, B, p, n, stop_criterion, delta, nu, inter, epsilon1, epsilon2, fixed_B, print_t, omega_0, phi_0));
     return rcpp_result_gen;
 END_RCPP
