@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Hierarchical Matrix-F prior for Graphical Models, or HMFGraph
+# Hierarchical Matrix-F prior for Gaussian Graphical Models, or HMFGraph
 
 <!-- badges: start -->
 <!-- badges: end -->
