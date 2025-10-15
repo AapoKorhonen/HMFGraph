@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Hierarchical Matrix-F prior for Graphical Models, or HMFGraph
+# Hierarchical Matrix-F prior for Gaussian Graphical Models, or HMFGraph
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -43,7 +43,7 @@ qgraph(results$adjacency_matrix)
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
 The function HMFGraph is a wrapper of three different function. If
-prefered, the user can run the function individually. The HMFGraph_GEM
+prefered, the user can run functions individually. The HMFGraph_GEM
 function selects an optimal alpha value based on a condition number
 constraint method (if the alpha is not specified in the function call)
 and uses the GEM algorithm to obtain a MAP estimate.
