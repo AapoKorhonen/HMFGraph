@@ -20,7 +20,7 @@
 #' @examples generated_data <- data_generator(n=n, p = p)
 #' @examples results_HMFGraph_GEM <- HMFGraph_GEM(generated_data$data, alpha = p * 5 / ( p * 5+n), beta=0.9)
 #' @examples permutations <- HMFGraph_GEM_permutations(generated_data$data, results_HMFGraph_GEM, number_of_permutations = 100, parallel = F)
-HMFGraph_GEM_permutations <- function(data, HMFGraph_GEM_RESULTS, number_of_permutations = 50, parallel = FALSE, seed = FALSE, n_cores = 0, median_p=T, omega_0 = NULL){
+HMFGraph_GEM_permutations <- function(data, HMFGraph_GEM_RESULTS, number_of_permutations = 50, parallel = TRUE, seed = FALSE, n_cores = 0, median_p=T, omega_0 = NULL){
   
   
   

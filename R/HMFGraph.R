@@ -43,7 +43,7 @@ HMFGraph <- function(data, p = NULL,  n = NULL,
                          kappa_max=NULL, omega_0 = NULL,
                          max_steps=50, threshold=0.05, alpha_selection=F, 
                          lower_alpha = p/(p+n), print_binary_search = F,print_t_alpha=F, 
-                         number_of_permutations = 50, parallel = FALSE, seed = FALSE, 
+                         number_of_permutations = 50, parallel = TRUE, seed = FALSE, 
                          n_cores = 0, median_p=T, 
                          expected_connections= NULL, MCC=F){
   
