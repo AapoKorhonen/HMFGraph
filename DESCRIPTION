@@ -1,6 +1,6 @@
 Package: HMFGraph
 Type: Package
-Title: Hierarchical Matrix-F prior for Graphical Models
+Title: Hierarchical Matrix-F prior for Gaussian Graphical Models
 Version: 1.0
 Date: 2024-11-14
 Author: Aapo Korhonen
