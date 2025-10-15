@@ -36,51 +36,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// Hierarchical_wishart_Gem_algorithm_cpp
-List Hierarchical_wishart_Gem_algorithm_cpp(int iters, arma::mat S, const arma::mat B, int p, int n, double stop_criterion, double delta, double nu, int inter, double epsilon1, double epsilon2, bool fixed_B, bool print_t, const arma::mat omega_0);
-RcppExport SEXP _HMFGraph_Hierarchical_wishart_Gem_algorithm_cpp(SEXP itersSEXP, SEXP SSEXP, SEXP BSEXP, SEXP pSEXP, SEXP nSEXP, SEXP stop_criterionSEXP, SEXP deltaSEXP, SEXP nuSEXP, SEXP interSEXP, SEXP epsilon1SEXP, SEXP epsilon2SEXP, SEXP fixed_BSEXP, SEXP print_tSEXP, SEXP omega_0SEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< int >::type iters(itersSEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type S(SSEXP);
-    Rcpp::traits::input_parameter< const arma::mat >::type B(BSEXP);
-    Rcpp::traits::input_parameter< int >::type p(pSEXP);
-    Rcpp::traits::input_parameter< int >::type n(nSEXP);
-    Rcpp::traits::input_parameter< double >::type stop_criterion(stop_criterionSEXP);
-    Rcpp::traits::input_parameter< double >::type delta(deltaSEXP);
-    Rcpp::traits::input_parameter< double >::type nu(nuSEXP);
-    Rcpp::traits::input_parameter< int >::type inter(interSEXP);
-    Rcpp::traits::input_parameter< double >::type epsilon1(epsilon1SEXP);
-    Rcpp::traits::input_parameter< double >::type epsilon2(epsilon2SEXP);
-    Rcpp::traits::input_parameter< bool >::type fixed_B(fixed_BSEXP);
-    Rcpp::traits::input_parameter< bool >::type print_t(print_tSEXP);
-    Rcpp::traits::input_parameter< const arma::mat >::type omega_0(omega_0SEXP);
-    rcpp_result_gen = Rcpp::wrap(Hierarchical_wishart_Gem_algorithm_cpp(iters, S, B, p, n, stop_criterion, delta, nu, inter, epsilon1, epsilon2, fixed_B, print_t, omega_0));
-    return rcpp_result_gen;
-END_RCPP
-}
-// Matrix_F_Gem_algorithm_cpp
-List Matrix_F_Gem_algorithm_cpp(int iters, arma::mat S, const arma::mat B, int p, int n, double stop_criterion, double delta, double nu, int inter, bool print_t, const arma::mat omega_0);
-RcppExport SEXP _HMFGraph_Matrix_F_Gem_algorithm_cpp(SEXP itersSEXP, SEXP SSEXP, SEXP BSEXP, SEXP pSEXP, SEXP nSEXP, SEXP stop_criterionSEXP, SEXP deltaSEXP, SEXP nuSEXP, SEXP interSEXP, SEXP print_tSEXP, SEXP omega_0SEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< int >::type iters(itersSEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type S(SSEXP);
-    Rcpp::traits::input_parameter< const arma::mat >::type B(BSEXP);
-    Rcpp::traits::input_parameter< int >::type p(pSEXP);
-    Rcpp::traits::input_parameter< int >::type n(nSEXP);
-    Rcpp::traits::input_parameter< double >::type stop_criterion(stop_criterionSEXP);
-    Rcpp::traits::input_parameter< double >::type delta(deltaSEXP);
-    Rcpp::traits::input_parameter< double >::type nu(nuSEXP);
-    Rcpp::traits::input_parameter< int >::type inter(interSEXP);
-    Rcpp::traits::input_parameter< bool >::type print_t(print_tSEXP);
-    Rcpp::traits::input_parameter< const arma::mat >::type omega_0(omega_0SEXP);
-    rcpp_result_gen = Rcpp::wrap(Matrix_F_Gem_algorithm_cpp(iters, S, B, p, n, stop_criterion, delta, nu, inter, print_t, omega_0));
-    return rcpp_result_gen;
-END_RCPP
-}
 // gibbs_algorithm_cpp
 List gibbs_algorithm_cpp(int iters, const arma::mat& S, arma::mat B, int p, int n, double delta, double nu, double epsilon1, double epsilon2, bool fixed_B, bool print_t, double a_lim, double b_lim, arma::mat Omega0);
 RcppExport SEXP _HMFGraph_gibbs_algorithm_cpp(SEXP itersSEXP, SEXP SSEXP, SEXP BSEXP, SEXP pSEXP, SEXP nSEXP, SEXP deltaSEXP, SEXP nuSEXP, SEXP epsilon1SEXP, SEXP epsilon2SEXP, SEXP fixed_BSEXP, SEXP print_tSEXP, SEXP a_limSEXP, SEXP b_limSEXP, SEXP Omega0SEXP) {
@@ -102,32 +57,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type b_lim(b_limSEXP);
     Rcpp::traits::input_parameter< arma::mat >::type Omega0(Omega0SEXP);
     rcpp_result_gen = Rcpp::wrap(gibbs_algorithm_cpp(iters, S, B, p, n, delta, nu, epsilon1, epsilon2, fixed_B, print_t, a_lim, b_lim, Omega0));
-    return rcpp_result_gen;
-END_RCPP
-}
-// hwo_Gem_algorithm_cpp
-List hwo_Gem_algorithm_cpp(int iters, arma::mat S, const arma::mat B, int p, int n, double stop_criterion, double delta, double nu, int inter, double epsilon1, double epsilon2, bool fixed_B, bool print_t, const arma::mat omega_0, double gamma1, double gamma2);
-RcppExport SEXP _HMFGraph_hwo_Gem_algorithm_cpp(SEXP itersSEXP, SEXP SSEXP, SEXP BSEXP, SEXP pSEXP, SEXP nSEXP, SEXP stop_criterionSEXP, SEXP deltaSEXP, SEXP nuSEXP, SEXP interSEXP, SEXP epsilon1SEXP, SEXP epsilon2SEXP, SEXP fixed_BSEXP, SEXP print_tSEXP, SEXP omega_0SEXP, SEXP gamma1SEXP, SEXP gamma2SEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< int >::type iters(itersSEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type S(SSEXP);
-    Rcpp::traits::input_parameter< const arma::mat >::type B(BSEXP);
-    Rcpp::traits::input_parameter< int >::type p(pSEXP);
-    Rcpp::traits::input_parameter< int >::type n(nSEXP);
-    Rcpp::traits::input_parameter< double >::type stop_criterion(stop_criterionSEXP);
-    Rcpp::traits::input_parameter< double >::type delta(deltaSEXP);
-    Rcpp::traits::input_parameter< double >::type nu(nuSEXP);
-    Rcpp::traits::input_parameter< int >::type inter(interSEXP);
-    Rcpp::traits::input_parameter< double >::type epsilon1(epsilon1SEXP);
-    Rcpp::traits::input_parameter< double >::type epsilon2(epsilon2SEXP);
-    Rcpp::traits::input_parameter< bool >::type fixed_B(fixed_BSEXP);
-    Rcpp::traits::input_parameter< bool >::type print_t(print_tSEXP);
-    Rcpp::traits::input_parameter< const arma::mat >::type omega_0(omega_0SEXP);
-    Rcpp::traits::input_parameter< double >::type gamma1(gamma1SEXP);
-    Rcpp::traits::input_parameter< double >::type gamma2(gamma2SEXP);
-    rcpp_result_gen = Rcpp::wrap(hwo_Gem_algorithm_cpp(iters, S, B, p, n, stop_criterion, delta, nu, inter, epsilon1, epsilon2, fixed_B, print_t, omega_0, gamma1, gamma2));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -171,49 +100,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// rcpparma_hello_world
-arma::mat rcpparma_hello_world();
-RcppExport SEXP _HMFGraph_rcpparma_hello_world() {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(rcpparma_hello_world());
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpparma_outerproduct
-arma::mat rcpparma_outerproduct(const arma::colvec& x);
-RcppExport SEXP _HMFGraph_rcpparma_outerproduct(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::colvec& >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpparma_outerproduct(x));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpparma_innerproduct
-double rcpparma_innerproduct(const arma::colvec& x);
-RcppExport SEXP _HMFGraph_rcpparma_innerproduct(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::colvec& >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpparma_innerproduct(x));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpparma_bothproducts
-Rcpp::List rcpparma_bothproducts(const arma::colvec& x);
-RcppExport SEXP _HMFGraph_rcpparma_bothproducts(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::colvec& >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpparma_bothproducts(x));
-    return rcpp_result_gen;
-END_RCPP
-}
 // shuffle_matrix
 Rcpp::NumericMatrix shuffle_matrix(const Rcpp::NumericMatrix data, int seed_number);
 RcppExport SEXP _HMFGraph_shuffle_matrix(SEXP dataSEXP, SEXP seed_numberSEXP) {
@@ -229,17 +115,10 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_HMFGraph_HMFGraph_Gem_algorithm_cpp", (DL_FUNC) &_HMFGraph_HMFGraph_Gem_algorithm_cpp, 15},
-    {"_HMFGraph_Hierarchical_wishart_Gem_algorithm_cpp", (DL_FUNC) &_HMFGraph_Hierarchical_wishart_Gem_algorithm_cpp, 14},
-    {"_HMFGraph_Matrix_F_Gem_algorithm_cpp", (DL_FUNC) &_HMFGraph_Matrix_F_Gem_algorithm_cpp, 11},
     {"_HMFGraph_gibbs_algorithm_cpp", (DL_FUNC) &_HMFGraph_gibbs_algorithm_cpp, 14},
-    {"_HMFGraph_hwo_Gem_algorithm_cpp", (DL_FUNC) &_HMFGraph_hwo_Gem_algorithm_cpp, 16},
     {"_HMFGraph_interval_adjacency", (DL_FUNC) &_HMFGraph_interval_adjacency, 3},
     {"_HMFGraph_mvrnorm_cpp", (DL_FUNC) &_HMFGraph_mvrnorm_cpp, 3},
     {"_HMFGraph_rajat_Cpp", (DL_FUNC) &_HMFGraph_rajat_Cpp, 4},
-    {"_HMFGraph_rcpparma_hello_world", (DL_FUNC) &_HMFGraph_rcpparma_hello_world, 0},
-    {"_HMFGraph_rcpparma_outerproduct", (DL_FUNC) &_HMFGraph_rcpparma_outerproduct, 1},
-    {"_HMFGraph_rcpparma_innerproduct", (DL_FUNC) &_HMFGraph_rcpparma_innerproduct, 1},
-    {"_HMFGraph_rcpparma_bothproducts", (DL_FUNC) &_HMFGraph_rcpparma_bothproducts, 1},
     {"_HMFGraph_shuffle_matrix", (DL_FUNC) &_HMFGraph_shuffle_matrix, 2},
     {NULL, NULL, 0}
 };
