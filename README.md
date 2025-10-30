@@ -142,3 +142,9 @@ qgraph(results_gibbs_CI$adjacency_matrix)
 ```
 
 <img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
+
+## Citation
+
+If you use this package in your research, please cite the following paper:
+
+Citation: Korhonen AE, Sarala O, Hautamäki T, Kuismin M, Sillanpää MJ (2025) HMFGraph: Novel Bayesian approach for recovering biological networks. PLoS Comput Biol 21(10): e1013614. https://doi.org/10.1371/journal.pcbi.1013614
